@@ -1,0 +1,8 @@
+name: methylation
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - minimod
+platforms:
+  - linux-64

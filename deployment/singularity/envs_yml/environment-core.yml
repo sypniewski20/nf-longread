@@ -1,0 +1,14 @@
+name: tools
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - samtools
+  - pbmm2
+  - pbsv
+  - sniffles
+  - hiphase
+  - pb-cpg-tools
+  - minimod
+platforms:
+  - linux-64

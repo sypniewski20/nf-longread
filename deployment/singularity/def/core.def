@@ -1,0 +1,70 @@
+Bootstrap: docker
+From: mambaorg/micromamba:1.5.8
+
+########################################################
+# BUILD-TIME FILES
+########################################################
+%files
+    deployment/singularity/locks/core_lock.yml   /opt/build/core_lock.yml
+
+########################################################
+# POST BUILD
+########################################################
+%post
+    set -e
+
+    apt-get update && apt-get install -y \
+        bash \
+        curl \
+        wget \
+        unzip \
+        ca-certificates \
+        bzip2 \
+        coreutils \
+        procps \
+        openjdk-17-jdk \
+        cmake \
+        g++ \
+        gcc \
+        libboost-all-dev \
+        libz-dev \
+        libbz2-dev \
+        liblzma-dev \
+        libgtest-dev \
+        googletest \
+        libc6 \
+        libgomp1 \
+        zlib1g \
+        libnss3 \
+        libgcc-s1 \
+        libblas3 \
+        liblapack3
+
+    mkdir -p /opt/envs /opt/build
+
+    export DEBIAN_FRONTEND=noninteractive
+    export MAMBA_ROOT_PREFIX=/opt/micromamba
+
+    ########################################################
+    # 1. INSTALL CONDA-LOCK INTO BASE
+    ########################################################
+    echo "[INFO] Installing conda-lock"
+    micromamba install -y -p $MAMBA_ROOT_PREFIX conda-forge::conda-lock=4.0.0
+    export PATH=$MAMBA_ROOT_PREFIX/bin:$PATH
+
+    ########################################################
+    # 2. INSTALL ENVIRONMENT FROM LOCK FILE
+    ########################################################
+    echo "[INFO] Installing environment from lock file"
+
+    conda-lock install -p /opt/envs/tools /opt/build/core_lock.yml
+
+    micromamba clean -a -y
+########################################################
+# ENVIRONMENT
+########################################################
+%environment
+    export PATH=/opt/envs/tools/bin:/usr/local/bin:$PATH
+    export XDG_CACHE_HOME=/tmp/.cache
+    export HOME=/tmp
+    export MPLCONFIGDIR=/tmp/.config/matplotlib
