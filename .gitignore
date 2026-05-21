@@ -1,0 +1,10 @@
+.git
+.nextflow*
+*.Rproj
+deployment/reference
+deployment/singularity/sif
+deployment/benchmark/bams
+deployment/benchmark/truth_vcfs
+deployment/benchmark/trio_benchmark_results/test_run
+deployment/benchmark/trio_benchmark_results/work
+deployment/benchmark/trio_benchmark_results/validation/*gz
