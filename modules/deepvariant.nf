@@ -1,9 +1,8 @@
 process DEEP_VARIANT {
     publishDir "${params.outfolder}/${params.runID}/deepvariant", mode: 'copy', overwrite: true
     tag "${sample}"
-    label 'deepvariant'
+    label (params.gpus == 0 ? 'deepvariant' : 'deepvariant_gpu')    
     label 'xlarge'
-
     input:
         tuple val(sample), path(bam), path(bai)
         tuple path(fasta), path(fai)
@@ -25,21 +24,24 @@ process DEEP_VARIANT {
 
 process GLNEXUS {
     publishDir "${params.outfolder}/${params.runID}/deepvariant", mode: 'copy', overwrite: true
-    tag "${sample}"
     label 'glnexus'
     label 'large'
 	input:
 		path(gvcf)
 		path(gvcf_tbi)
 	output:
-		path("glnexus_dv.bcf")
+		tuple path("glnexus_deepvariant.vcf.gz"), path("glnexus_deepvariant.vcf.gz.tbi")
 	script:
+        def config = (params.seq_type == "WES" ? "WES" : "WGS")
 		"""
 
 		glnexus_cli \
 		--threads ${task.cpus} \
-		--config DeepVariant${params.seq_type} \
-		${gvcf} > glnexus_dv.bcf
+		--config DeepVariant${config} \
+		${gvcf} | \
+		bcftools view -Oz -o glnexus_deepvariant.vcf.gz
+
+		bcftools index --tbi glnexus_deepvariant.vcf.gz
 
 		"""
 
@@ -47,24 +49,23 @@ process GLNEXUS {
 
 process NORM_MULTISAMPLE {
     publishDir "${params.outfolder}/${params.runID}/deepvariant", mode: 'copy', overwrite: true
-    label 'gatk'
+    label 'core'
     label 'large'
 	input:
-		path(bcf)
+		tuple path(vcf), path(vcf_tbi)
         tuple path(fasta), path(fai)
 	output:
-		path("norm_${bcf.simpleName}.vcf.gz"), emit: vcf
-        path("norm_${bcf.simpleName}.vcf.gz.tbi"), emit: tbi
-	script:
+		tuple path("norm_${vcf.simpleName}.vcf.gz"), path("norm_${vcf.simpleName}.vcf.gz.tbi")
+    script:
 		"""
 
-        bcftools norm -a --atom-overlaps . -m - -f ${fasta} ${bcf} -Ou | \
+        bcftools norm -a --atom-overlaps . -m - -f ${fasta} ${vcf} -Ou | \
         bcftools view -f PASS -Ou | \
         bcftools annotate --set-id +'%CHROM\\_%POS\\_%REF\\_%ALT' -Ou | \
         bcftools +fill-tags -Ou -- -t AF,AC | \
-        bcftools sort -Oz -o norm_${bcf.simpleName}.vcf.gz
+        bcftools sort -Oz -o norm_${vcf.simpleName}.vcf.gz
 
-        tabix -p vcf norm_${bcf.simpleName}.vcf.gz
+        tabix -p vcf norm_${vcf.simpleName}.vcf.gz
 
 		"""
 
@@ -72,22 +73,17 @@ process NORM_MULTISAMPLE {
 
 process DV_EXTRACT_GT {
     label 'tiny'
-    label 'gatk'
+    label 'core'
     publishDir "${params.outfolder}/${params.runID}/deepvariant", mode: 'copy', overwrite: true
 
     input:
-        path(vcf)
-        path(tbi)
+        tuple path(vcf), path(tbi)
     output:
-        path("${vcf.simpleName}_gt.table"), emit: ch_gt_table
-        path("${vcf.simpleName}_gt.table.md5"), emit: ch_gt_table_md5
+        path("${vcf.simpleName}_gt.tsv.gz")
     script:
     """
-    gatk VariantsToTable \
-        -V ${vcf} \
-        -F CHROM -F POS -F ID -F REF -F ALT -GF GT -GF DP \
-        -O ${vcf.simpleName}_gt.table
-
-    md5sum ${vcf.simpleName}_gt.table > ${vcf.simpleName}_gt.table.md5
+    echo -e "ID\\tSAMPLE\\tDP\\tAF\\tQUAL\\tGT" | bgzip -c > ${vcf.simpleName}_gt.tsv.gz
+    bcftools query -f "[%ID\\t%SAMPLE\\t%DP\\t%AF\\t%QUAL\\t%GT\\n]" ${vcf} | \
+    bgzip -c >> ${vcf.simpleName}_gt.tsv.gz
     """
 }

@@ -1,0 +1,628 @@
+maj-25 12:52:42.932 [main] DEBUG nextflow.cli.Launcher - $> nextflow -log deployment/benchmark/trio_benchmark_results/logs/nextflow.log run main.nf --input_type ubam --run_mode DV,SV,PHASE,METHYLATION -profile singularity --singularity_path deployment/singularity/sif --samplesheet deployment/benchmark/benchmark_manifest_ubam.csv --outfolder deployment/benchmark/trio_benchmark_results --runID test_run -resume -w deployment/benchmark/trio_benchmark_results/work --seq_type PACBIO --fasta deployment/reference/fasta/Homo_sapiens_assembly38.fasta --annotate false
+maj-25 12:52:43.101 [main] DEBUG nextflow.cli.CmdRun - N E X T F L O W  ~  version 25.10.4
+maj-25 12:52:43.124 [main] DEBUG nextflow.plugin.PluginsFacade - Setting up plugin manager > mode=prod; embedded=false; plugins-dir=/home/mateuszsypniewski/.nextflow/plugins; core-plugins: nf-amazon@3.4.4,nf-azure@1.20.2,nf-cloudcache@0.5.0,nf-codecommit@0.5.0,nf-console@1.3.0,nf-google@1.23.5,nf-k8s@1.2.2,nf-tower@1.17.5,nf-wave@1.16.1
+maj-25 12:52:43.153 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Enabled plugins: []
+maj-25 12:52:43.154 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Disabled plugins: []
+maj-25 12:52:43.157 [main] INFO  org.pf4j.DefaultPluginManager - PF4J version 3.12.0 in 'deployment' mode
+maj-25 12:52:43.173 [main] DEBUG nextflow.util.RetryConfig - Missing nextflow session - using default retry config
+maj-25 12:52:43.310 [main] INFO  org.pf4j.AbstractPluginManager - No plugins
+maj-25 12:52:43.339 [main] DEBUG nextflow.config.ConfigBuilder - Found config local: /home/mateuszsypniewski/projects/nf-longread/nextflow.config
+maj-25 12:52:43.341 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /home/mateuszsypniewski/projects/nf-longread/nextflow.config
+maj-25 12:52:43.368 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `singularity`
+maj-25 12:52:44.200 [main] DEBUG nextflow.config.ConfigBuilder - Available config profiles: [singularity]
+maj-25 12:52:44.251 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins default=[]
+maj-25 12:52:44.251 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins resolved requirement=[]
+maj-25 12:52:44.271 [main] DEBUG n.secret.LocalSecretsProvider - Secrets store: /home/mateuszsypniewski/.nextflow/secrets/store.json
+maj-25 12:52:44.275 [main] DEBUG nextflow.secret.SecretsLoader - Discovered secrets providers: [nextflow.secret.LocalSecretsProvider@67536ae0] - activable => nextflow.secret.LocalSecretsProvider@67536ae0
+maj-25 12:52:44.277 [main] DEBUG nextflow.cli.CmdRun - Applied DSL=2 from script declaration
+maj-25 12:52:44.295 [main] DEBUG nextflow.cli.CmdRun - Launching `main.nf` [tiny_austin] DSL2 - revision: 08293f78ec
+maj-25 12:52:44.356 [main] DEBUG nextflow.Session - Session UUID: e2fa8c39-6405-491f-a7a1-f4fb0a5deb3f
+maj-25 12:52:44.357 [main] DEBUG nextflow.Session - Run name: tiny_austin
+maj-25 12:52:44.357 [main] DEBUG nextflow.Session - Executor pool size: 48
+maj-25 12:52:44.369 [main] DEBUG nextflow.file.FilePorter - File porter settings maxRetries=3; maxTransfers=50; pollTimeout=null
+maj-25 12:52:44.376 [main] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'FileTransfer' minSize=10; maxSize=144; workQueue=LinkedBlockingQueue[-1]; allowCoreThreadTimeout=false
+maj-25 12:52:44.402 [main] DEBUG nextflow.cli.CmdRun - 
+  Version: 25.10.4 build 11173
+  Created: 10-02-2026 15:17 UTC (16:17 CEST)
+  System: Linux 6.1.0-41-amd64
+  Runtime: Groovy 4.0.28 on OpenJDK 64-Bit Server VM 23.0.2-internal-adhoc.conda.src
+  Encoding: UTF-8 (UTF-8)
+  Process: 2136167@debian [127.0.0.1]
+  CPUs: 48 - Mem: 354.3 GB (30.4 GB) - Swap: 976 MB (0)
+maj-25 12:52:44.486 [main] DEBUG nextflow.Session - Work-dir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work [ext2/ext3]
+maj-25 12:52:44.487 [main] DEBUG nextflow.Session - Script base path does not exist or is not a directory: /home/mateuszsypniewski/projects/nf-longread/bin
+maj-25 12:52:44.502 [main] DEBUG nextflow.executor.ExecutorFactory - Extension executors providers=[]
+maj-25 12:52:44.519 [main] DEBUG nextflow.Session - Observer factory (v2): LinObserverFactory
+maj-25 12:52:44.540 [main] DEBUG nextflow.Session - Observer factory (v2): DefaultObserverFactory
+maj-25 12:52:44.623 [main] DEBUG nextflow.cache.CacheFactory - Using Nextflow cache factory: nextflow.cache.DefaultCacheFactory
+maj-25 12:52:44.637 [main] DEBUG nextflow.util.CustomThreadPool - Creating default thread pool > poolSize: 49; maxThreads: 1000
+maj-25 12:52:44.755 [main] DEBUG nextflow.Session - Session start
+maj-25 12:52:44.763 [main] DEBUG nextflow.trace.TraceFileObserver - Workflow started -- trace file: deployment/benchmark/trio_benchmark_results/test_run/logs/execution_trace.txt
+maj-25 12:52:45.057 [main] DEBUG nextflow.script.ScriptRunner - > Launching execution
+maj-25 12:52:46.528 [main] DEBUG n.script.dsl.ProcessConfigBuilder - Config settings `withLabel:core` matches labels `core,xlarge` for process with name pbmm2_mapping_workflow:PBMM2_MAPPING
+maj-25 12:52:46.530 [main] DEBUG n.script.dsl.ProcessConfigBuilder - Config settings `withLabel:xlarge` matches labels `core,xlarge` for process with name pbmm2_mapping_workflow:PBMM2_MAPPING
+maj-25 12:52:46.532 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+maj-25 12:52:46.533 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+maj-25 12:52:46.543 [main] DEBUG nextflow.executor.Executor - [warm up] executor > local
+maj-25 12:52:46.551 [main] DEBUG n.processor.LocalPollingMonitor - Creating local task monitor for executor 'local' > cpus=48; memory=354.3 GB; capacity=48; pollInterval=100ms; dumpInterval=5m
+maj-25 12:52:46.553 [main] DEBUG n.processor.TaskPollingMonitor - >>> barrier register (monitor: local)
+maj-25 12:52:46.574 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'pbmm2_mapping_workflow:PBMM2_MAPPING': maxForks=0; fair=false; array=0
+maj-25 12:52:46.606 [main] DEBUG n.script.dsl.ProcessConfigBuilder - Config settings `withLabel:qc` matches labels `qc,medium` for process with name mosdepth_workflow:MOSDEPTH
+maj-25 12:52:46.607 [main] DEBUG n.script.dsl.ProcessConfigBuilder - Config settings `withLabel:medium` matches labels `qc,medium` for process with name mosdepth_workflow:MOSDEPTH
+maj-25 12:52:46.608 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+maj-25 12:52:46.608 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+maj-25 12:52:46.609 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'mosdepth_workflow:MOSDEPTH': maxForks=0; fair=false; array=0
+maj-25 12:52:46.632 [main] DEBUG n.script.dsl.ProcessConfigBuilder - Config settings `withLabel:qc` matches labels `qc,tiny` for process with name multiqc_workflow:MULTIQC
+maj-25 12:52:46.633 [main] DEBUG n.script.dsl.ProcessConfigBuilder - Config settings `withLabel:tiny` matches labels `qc,tiny` for process with name multiqc_workflow:MULTIQC
+maj-25 12:52:46.634 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+maj-25 12:52:46.634 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+maj-25 12:52:46.635 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'multiqc_workflow:MULTIQC': maxForks=0; fair=false; array=0
+maj-25 12:52:46.644 [main] DEBUG n.script.dsl.ProcessConfigBuilder - Config settings `withLabel:deepvariant` matches labels `deepvariant,xlarge` for process with name deepvariant_workflow:DEEP_VARIANT
+maj-25 12:52:46.645 [main] DEBUG n.script.dsl.ProcessConfigBuilder - Config settings `withLabel:xlarge` matches labels `deepvariant,xlarge` for process with name deepvariant_workflow:DEEP_VARIANT
+maj-25 12:52:46.646 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+maj-25 12:52:46.646 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+maj-25 12:52:46.647 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'deepvariant_workflow:DEEP_VARIANT': maxForks=0; fair=false; array=0
+maj-25 12:52:46.658 [main] DEBUG n.script.dsl.ProcessConfigBuilder - Config settings `withLabel:glnexus` matches labels `glnexus,large` for process with name deepvariant_workflow:GLNEXUS
+maj-25 12:52:46.658 [main] DEBUG n.script.dsl.ProcessConfigBuilder - Config settings `withLabel:large` matches labels `glnexus,large` for process with name deepvariant_workflow:GLNEXUS
+maj-25 12:52:46.659 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+maj-25 12:52:46.659 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+maj-25 12:52:46.661 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'deepvariant_workflow:GLNEXUS': maxForks=0; fair=false; array=0
+maj-25 12:52:46.664 [main] DEBUG n.script.dsl.ProcessConfigBuilder - Config settings `withLabel:core` matches labels `core,large` for process with name deepvariant_workflow:NORM_MULTISAMPLE
+maj-25 12:52:46.665 [main] DEBUG n.script.dsl.ProcessConfigBuilder - Config settings `withLabel:large` matches labels `core,large` for process with name deepvariant_workflow:NORM_MULTISAMPLE
+maj-25 12:52:46.666 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+maj-25 12:52:46.666 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+maj-25 12:52:46.667 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'deepvariant_workflow:NORM_MULTISAMPLE': maxForks=0; fair=false; array=0
+maj-25 12:52:46.672 [main] DEBUG n.script.dsl.ProcessConfigBuilder - Config settings `withLabel:core` matches labels `tiny,core` for process with name deepvariant_workflow:DV_EXTRACT_GT
+maj-25 12:52:46.672 [main] DEBUG n.script.dsl.ProcessConfigBuilder - Config settings `withLabel:tiny` matches labels `tiny,core` for process with name deepvariant_workflow:DV_EXTRACT_GT
+maj-25 12:52:46.673 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+maj-25 12:52:46.674 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+maj-25 12:52:46.674 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'deepvariant_workflow:DV_EXTRACT_GT': maxForks=0; fair=false; array=0
+maj-25 12:52:46.679 [main] DEBUG n.script.dsl.ProcessConfigBuilder - Config settings `withLabel:core` matches labels `core,large` for process with name sv_workflow:PBSV_DISCOVER
+maj-25 12:52:46.680 [main] DEBUG n.script.dsl.ProcessConfigBuilder - Config settings `withLabel:large` matches labels `core,large` for process with name sv_workflow:PBSV_DISCOVER
+maj-25 12:52:46.683 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+maj-25 12:52:46.683 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+maj-25 12:52:46.684 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'sv_workflow:PBSV_DISCOVER': maxForks=0; fair=false; array=0
+maj-25 12:52:46.686 [main] DEBUG n.script.dsl.ProcessConfigBuilder - Config settings `withLabel:core` matches labels `core,large` for process with name sv_workflow:PBSV_CALL
+maj-25 12:52:46.687 [main] DEBUG n.script.dsl.ProcessConfigBuilder - Config settings `withLabel:large` matches labels `core,large` for process with name sv_workflow:PBSV_CALL
+maj-25 12:52:46.688 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+maj-25 12:52:46.688 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+maj-25 12:52:46.688 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'sv_workflow:PBSV_CALL': maxForks=0; fair=false; array=0
+maj-25 12:52:46.691 [main] DEBUG n.script.dsl.ProcessConfigBuilder - Config settings `withLabel:core` matches labels `core,large` for process with name sv_workflow:SNIFFLES_SNF
+maj-25 12:52:46.693 [main] DEBUG n.script.dsl.ProcessConfigBuilder - Config settings `withLabel:large` matches labels `core,large` for process with name sv_workflow:SNIFFLES_SNF
+maj-25 12:52:46.693 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+maj-25 12:52:46.694 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+maj-25 12:52:46.694 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'sv_workflow:SNIFFLES_SNF': maxForks=0; fair=false; array=0
+maj-25 12:52:46.698 [main] DEBUG n.script.dsl.ProcessConfigBuilder - Config settings `withLabel:core` matches labels `core,large` for process with name sv_workflow:SNIFFLES_MULTISAMPLE
+maj-25 12:52:46.699 [main] DEBUG n.script.dsl.ProcessConfigBuilder - Config settings `withLabel:large` matches labels `core,large` for process with name sv_workflow:SNIFFLES_MULTISAMPLE
+maj-25 12:52:46.700 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+maj-25 12:52:46.700 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+maj-25 12:52:46.700 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'sv_workflow:SNIFFLES_MULTISAMPLE': maxForks=0; fair=false; array=0
+maj-25 12:52:46.708 [main] DEBUG n.script.dsl.ProcessConfigBuilder - Config settings `withLabel:core` matches labels `core,large` for process with name hiphase_workflow:HIPHASE_PHASING
+maj-25 12:52:46.708 [main] DEBUG n.script.dsl.ProcessConfigBuilder - Config settings `withLabel:large` matches labels `core,large` for process with name hiphase_workflow:HIPHASE_PHASING
+maj-25 12:52:46.710 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+maj-25 12:52:46.710 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+maj-25 12:52:46.710 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'hiphase_workflow:HIPHASE_PHASING': maxForks=0; fair=false; array=0
+maj-25 12:52:46.715 [main] DEBUG n.script.dsl.ProcessConfigBuilder - Config settings `withLabel:core` matches labels `core,medium` for process with name methylation_workflow:MINIMOD
+maj-25 12:52:46.716 [main] DEBUG n.script.dsl.ProcessConfigBuilder - Config settings `withLabel:medium` matches labels `core,medium` for process with name methylation_workflow:MINIMOD
+maj-25 12:52:46.717 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+maj-25 12:52:46.717 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+maj-25 12:52:46.717 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'methylation_workflow:MINIMOD': maxForks=0; fair=false; array=0
+maj-25 12:52:46.722 [main] DEBUG n.script.dsl.ProcessConfigBuilder - Config settings `withLabel:core` matches labels `core,medium` for process with name methylation_workflow:PB_CPG
+maj-25 12:52:46.722 [main] DEBUG n.script.dsl.ProcessConfigBuilder - Config settings `withLabel:medium` matches labels `core,medium` for process with name methylation_workflow:PB_CPG
+maj-25 12:52:46.723 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+maj-25 12:52:46.723 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+maj-25 12:52:46.724 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'methylation_workflow:PB_CPG': maxForks=0; fair=false; array=0
+maj-25 12:52:46.727 [main] DEBUG nextflow.Session - Workflow process names [dsl2]: FASTQC, methylation_workflow:MINIMOD, SPLICE_AI, deepvariant_workflow:DEEP_VARIANT, mosdepth_workflow:MOSDEPTH, multiqc_workflow:MULTIQC, MOSDEPTH_EXOME, MULTIQC, deepvariant_workflow:NORM_MULTISAMPLE, FASTP_PROCESSING, PBMM2_MAPPING, VEP_GERMLINE_SNV, MERGE_SVS, sv_workflow:PBSV_CALL, sv_workflow:SNIFFLES_MULTISAMPLE, FILTER_VEP, MINIMOD, MOSDEPTH, DV_EXTRACT_GT, HIPHASE_PHASING, deepvariant_workflow:GLNEXUS, pbmm2_mapping_workflow:PBMM2_MAPPING, hiphase_workflow:HIPHASE_PHASING, methylation_workflow:PB_CPG, DEEP_VARIANT, NORM_MULTISAMPLE, deepvariant_workflow:DV_EXTRACT_GT, GLNEXUS, SNIFFLES_SNF, SNIFFLES_MULTISAMPLE, FASTP_STREAM, sv_workflow:PBSV_DISCOVER, PBSV_DISCOVER, PBSV_CALL, PB_CPG, sv_workflow:SNIFFLES_SNF
+maj-25 12:52:46.731 [main] DEBUG nextflow.Session - Igniting dataflow network (21)
+maj-25 12:52:46.737 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > pbmm2_mapping_workflow:PBMM2_MAPPING
+maj-25 12:52:46.738 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > mosdepth_workflow:MOSDEPTH
+maj-25 12:52:46.739 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > multiqc_workflow:MULTIQC
+maj-25 12:52:46.739 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > deepvariant_workflow:DEEP_VARIANT
+maj-25 12:52:46.740 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > deepvariant_workflow:GLNEXUS
+maj-25 12:52:46.740 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > deepvariant_workflow:NORM_MULTISAMPLE
+maj-25 12:52:46.741 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > deepvariant_workflow:DV_EXTRACT_GT
+maj-25 12:52:46.741 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > sv_workflow:PBSV_DISCOVER
+maj-25 12:52:46.742 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > sv_workflow:PBSV_CALL
+maj-25 12:52:46.742 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > sv_workflow:SNIFFLES_SNF
+maj-25 12:52:46.743 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > sv_workflow:SNIFFLES_MULTISAMPLE
+maj-25 12:52:46.743 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > hiphase_workflow:HIPHASE_PHASING
+maj-25 12:52:46.744 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > methylation_workflow:MINIMOD
+maj-25 12:52:46.744 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > methylation_workflow:PB_CPG
+maj-25 12:52:46.745 [main] DEBUG nextflow.script.ScriptRunner - Parsed script files:
+  Script_f45632b66b3fa102: /home/mateuszsypniewski/projects/nf-longread/subworkflows/methylation.nf
+  Script_1e2214f26a70f5d9: /home/mateuszsypniewski/projects/nf-longread/modules/pbsv.nf
+  Script_c45cf37491ac6126: /home/mateuszsypniewski/projects/nf-longread/subworkflows/sv.nf
+  Script_b80cab365d217d3c: /home/mateuszsypniewski/projects/nf-longread/subworkflows/hiphase.nf
+  Script_1c32cb866f9756d7: /home/mateuszsypniewski/projects/nf-longread/modules/annotations.nf
+  Script_20ad49e057adf5d1: /home/mateuszsypniewski/projects/nf-longread/modules/deepvariant.nf
+  Script_21570df6b8013d6a: /home/mateuszsypniewski/projects/nf-longread/main.nf
+  Script_d004846aa6fe21f7: /home/mateuszsypniewski/projects/nf-longread/modules/methylation.nf
+  Script_1b2c17274fb14166: /home/mateuszsypniewski/projects/nf-longread/subworkflows/deepvariant.nf
+  Script_89f84bf0e2a88e77: /home/mateuszsypniewski/projects/nf-longread/subworkflows/annotation.nf
+  Script_eb88d2a61442e5c6: /home/mateuszsypniewski/projects/nf-longread/modules/sniffles.nf
+  Script_e3502b52a22bee69: /home/mateuszsypniewski/projects/nf-longread/modules/mapping.nf
+  Script_216b46ef4c077197: /home/mateuszsypniewski/projects/nf-longread/modules/survivor.nf
+  Script_fe8558acff877116: /home/mateuszsypniewski/projects/nf-longread/modules/functions.nf
+  Script_43b00e9ba4a8868b: /home/mateuszsypniewski/projects/nf-longread/modules/seqQC.nf
+  Script_783cdf38e4ff8405: /home/mateuszsypniewski/projects/nf-longread/modules/hiphase.nf
+  Script_bda6195c23069a3f: /home/mateuszsypniewski/projects/nf-longread/subworkflows/qc.nf
+  Script_56a6f377befb4e7f: /home/mateuszsypniewski/projects/nf-longread/subworkflows/mapping.nf
+maj-25 12:52:46.745 [main] DEBUG nextflow.script.ScriptRunner - > Awaiting termination 
+maj-25 12:52:46.745 [main] DEBUG nextflow.Session - Session await
+maj-25 12:52:46.977 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+maj-25 12:52:46.979 [Task submitter] INFO  nextflow.Session - [59/894a71] Submitted process > pbmm2_mapping_workflow:PBMM2_MAPPING (HG004)
+maj-25 12:52:46.992 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+maj-25 12:52:46.993 [Task submitter] INFO  nextflow.Session - [0a/e1f843] Submitted process > pbmm2_mapping_workflow:PBMM2_MAPPING (HG002)
+maj-25 12:52:47.006 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+maj-25 12:52:47.007 [Task submitter] INFO  nextflow.Session - [d3/f61cb8] Submitted process > pbmm2_mapping_workflow:PBMM2_MAPPING (HG003)
+maj-25 12:56:39.730 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 3; name: pbmm2_mapping_workflow:PBMM2_MAPPING (HG004); status: COMPLETED; exit: 0; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/59/894a7108700e17fe623f3cc4057b89]
+maj-25 12:56:39.733 [Task monitor] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'TaskFinalizer' minSize=10; maxSize=144; workQueue=LinkedBlockingQueue[-1]; allowCoreThreadTimeout=false
+maj-25 12:56:39.840 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+maj-25 12:56:39.845 [Task submitter] INFO  nextflow.Session - [86/c5bac1] Submitted process > sv_workflow:SNIFFLES_SNF (HG004)
+maj-25 12:56:39.881 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+maj-25 12:56:39.886 [Task submitter] INFO  nextflow.Session - [b4/babd96] Submitted process > sv_workflow:PBSV_DISCOVER (HG004)
+maj-25 12:57:01.347 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 2; name: pbmm2_mapping_workflow:PBMM2_MAPPING (HG003); status: COMPLETED; exit: 0; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/d3/f61cb80968c40194ee74deb5b1ea8a]
+maj-25 12:57:01.369 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+maj-25 12:57:01.370 [Task submitter] INFO  nextflow.Session - [d6/091282] Submitted process > mosdepth_workflow:MOSDEPTH (HG004)
+maj-25 12:57:02.383 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+maj-25 12:57:02.388 [Task submitter] INFO  nextflow.Session - [76/2b2e89] Submitted process > sv_workflow:SNIFFLES_SNF (HG003)
+maj-25 12:57:02.412 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+maj-25 12:57:02.415 [Task submitter] INFO  nextflow.Session - [ce/b8a613] Submitted process > mosdepth_workflow:MOSDEPTH (HG003)
+maj-25 12:57:09.170 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 7; name: sv_workflow:SNIFFLES_SNF (HG004); status: COMPLETED; exit: 0; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/86/c5bac1af44164659397808173b4433]
+maj-25 12:57:09.179 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+maj-25 12:57:09.180 [Task submitter] INFO  nextflow.Session - [c5/fc8ed1] Submitted process > sv_workflow:PBSV_DISCOVER (HG003)
+maj-25 12:57:09.189 [TaskFinalizer-3] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'PublishDir' minSize=10; maxSize=144; workQueue=LinkedBlockingQueue[-1]; allowCoreThreadTimeout=false
+maj-25 12:57:17.538 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 5; name: sv_workflow:PBSV_DISCOVER (HG004); status: COMPLETED; exit: 0; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/b4/babd96cec8142a4aea3ab7deb53f09]
+maj-25 12:57:18.553 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+maj-25 12:57:18.554 [Task submitter] INFO  nextflow.Session - [b6/af767f] Submitted process > sv_workflow:PBSV_CALL (HG004)
+maj-25 12:57:33.936 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 9; name: sv_workflow:SNIFFLES_SNF (HG003); status: COMPLETED; exit: 0; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/76/2b2e89e940a6ecc108504a5eac499e]
+maj-25 12:57:42.511 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 1; name: pbmm2_mapping_workflow:PBMM2_MAPPING (HG002); status: COMPLETED; exit: 0; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/0a/e1f84356ff9d23d9d50a35df9ef006]
+maj-25 12:57:42.523 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+maj-25 12:57:42.525 [Task submitter] INFO  nextflow.Session - [a8/113e81] Submitted process > deepvariant_workflow:DEEP_VARIANT (HG004)
+maj-25 12:57:42.534 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+maj-25 12:57:42.535 [Task submitter] INFO  nextflow.Session - [05/ef09ed] Submitted process > sv_workflow:PBSV_DISCOVER (HG002)
+maj-25 12:57:46.721 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 6 -- submitted tasks are shown below
+~> TaskHandler[id: 4; name: mosdepth_workflow:MOSDEPTH (HG004); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/d6/091282d61ac344561450e86655bc40]
+~> TaskHandler[id: 11; name: mosdepth_workflow:MOSDEPTH (HG003); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/ce/b8a613c19960b24e9c3a1af47b7352]
+~> TaskHandler[id: 8; name: sv_workflow:PBSV_DISCOVER (HG003); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/c5/fc8ed16a0b9b947dc0b815bd969daa]
+~> TaskHandler[id: 12; name: sv_workflow:PBSV_CALL (HG004); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/b6/af767f35d233b3cea4fd8f88c4f7ba]
+~> TaskHandler[id: 6; name: deepvariant_workflow:DEEP_VARIANT (HG004); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/a8/113e814a0d8e94d1a73376ad52a7cb]
+~> TaskHandler[id: 16; name: sv_workflow:PBSV_DISCOVER (HG002); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/05/ef09ed0dfb0c2221871af2358a3814]
+maj-25 12:57:49.996 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 8; name: sv_workflow:PBSV_DISCOVER (HG003); status: COMPLETED; exit: 0; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/c5/fc8ed16a0b9b947dc0b815bd969daa]
+maj-25 12:57:50.002 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+maj-25 12:57:50.003 [Task submitter] INFO  nextflow.Session - [ef/1e29d8] Submitted process > mosdepth_workflow:MOSDEPTH (HG002)
+maj-25 12:58:20.629 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 11; name: mosdepth_workflow:MOSDEPTH (HG003); status: COMPLETED; exit: 0; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/ce/b8a613c19960b24e9c3a1af47b7352]
+maj-25 12:58:20.642 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+maj-25 12:58:20.643 [Task submitter] INFO  nextflow.Session - [d8/2a0b74] Submitted process > sv_workflow:SNIFFLES_SNF (HG002)
+maj-25 12:58:24.793 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 4; name: mosdepth_workflow:MOSDEPTH (HG004); status: COMPLETED; exit: 0; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/d6/091282d61ac344561450e86655bc40]
+maj-25 12:58:25.563 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 16; name: sv_workflow:PBSV_DISCOVER (HG002); status: COMPLETED; exit: 0; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/05/ef09ed0dfb0c2221871af2358a3814]
+maj-25 12:58:25.575 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+maj-25 12:58:25.577 [Task submitter] INFO  nextflow.Session - [28/fc7ecd] Submitted process > sv_workflow:PBSV_CALL (HG003)
+maj-25 12:58:52.261 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 13; name: sv_workflow:SNIFFLES_SNF (HG002); status: COMPLETED; exit: 0; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/d8/2a0b74c93357b972adfe2fd90668b5]
+maj-25 12:58:52.267 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+maj-25 12:58:52.268 [Task submitter] INFO  nextflow.Session - [13/70371c] Submitted process > sv_workflow:PBSV_CALL (HG002)
+maj-25 12:59:08.853 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 15; name: mosdepth_workflow:MOSDEPTH (HG002); status: COMPLETED; exit: 0; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/ef/1e29d84693742c0145bf3e920194d8]
+maj-25 12:59:08.868 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+maj-25 12:59:08.870 [Task submitter] INFO  nextflow.Session - [e7/aeccb5] Submitted process > sv_workflow:SNIFFLES_MULTISAMPLE
+maj-25 12:59:12.905 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 19; name: sv_workflow:SNIFFLES_MULTISAMPLE; status: COMPLETED; exit: 0; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/e7/aeccb58b556ed0657498f9d3821ddd]
+maj-25 12:59:12.914 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+maj-25 12:59:12.915 [Task submitter] INFO  nextflow.Session - [20/39ed66] Submitted process > multiqc_workflow:MULTIQC
+maj-25 12:59:16.887 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 20; name: multiqc_workflow:MULTIQC; status: COMPLETED; exit: 0; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/20/39ed66243c356b78200d7593c80f03]
+maj-25 12:59:27.357 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 12; name: sv_workflow:PBSV_CALL (HG004); status: COMPLETED; exit: 0; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/b6/af767f35d233b3cea4fd8f88c4f7ba]
+maj-25 12:59:27.369 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+maj-25 12:59:27.370 [Task submitter] INFO  nextflow.Session - [37/2095ac] Submitted process > deepvariant_workflow:DEEP_VARIANT (HG003)
+maj-25 13:01:02.947 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 17; name: sv_workflow:PBSV_CALL (HG003); status: COMPLETED; exit: 0; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/28/fc7ecdf137241b7b85e279b8605785]
+maj-25 13:01:27.127 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 18; name: sv_workflow:PBSV_CALL (HG002); status: COMPLETED; exit: 0; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/13/70371c476c04ae63f26adc108fdd6b]
+maj-25 13:01:27.137 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+maj-25 13:01:27.138 [Task submitter] INFO  nextflow.Session - [60/8fdc6d] Submitted process > deepvariant_workflow:DEEP_VARIANT (HG002)
+maj-25 13:02:46.791 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 3 -- submitted tasks are shown below
+~> TaskHandler[id: 6; name: deepvariant_workflow:DEEP_VARIANT (HG004); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/a8/113e814a0d8e94d1a73376ad52a7cb]
+~> TaskHandler[id: 10; name: deepvariant_workflow:DEEP_VARIANT (HG003); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/37/2095ac269c5660c4d90817a403ca1d]
+~> TaskHandler[id: 14; name: deepvariant_workflow:DEEP_VARIANT (HG002); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/60/8fdc6d8df0d7a0dc97e91a4895b50f]
+maj-25 13:07:46.868 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 3 -- submitted tasks are shown below
+~> TaskHandler[id: 6; name: deepvariant_workflow:DEEP_VARIANT (HG004); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/a8/113e814a0d8e94d1a73376ad52a7cb]
+~> TaskHandler[id: 10; name: deepvariant_workflow:DEEP_VARIANT (HG003); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/37/2095ac269c5660c4d90817a403ca1d]
+~> TaskHandler[id: 14; name: deepvariant_workflow:DEEP_VARIANT (HG002); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/60/8fdc6d8df0d7a0dc97e91a4895b50f]
+maj-25 13:12:46.956 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 3 -- submitted tasks are shown below
+~> TaskHandler[id: 6; name: deepvariant_workflow:DEEP_VARIANT (HG004); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/a8/113e814a0d8e94d1a73376ad52a7cb]
+~> TaskHandler[id: 10; name: deepvariant_workflow:DEEP_VARIANT (HG003); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/37/2095ac269c5660c4d90817a403ca1d]
+~> TaskHandler[id: 14; name: deepvariant_workflow:DEEP_VARIANT (HG002); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/60/8fdc6d8df0d7a0dc97e91a4895b50f]
+maj-25 13:17:46.945 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 3 -- submitted tasks are shown below
+~> TaskHandler[id: 6; name: deepvariant_workflow:DEEP_VARIANT (HG004); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/a8/113e814a0d8e94d1a73376ad52a7cb]
+~> TaskHandler[id: 10; name: deepvariant_workflow:DEEP_VARIANT (HG003); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/37/2095ac269c5660c4d90817a403ca1d]
+~> TaskHandler[id: 14; name: deepvariant_workflow:DEEP_VARIANT (HG002); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/60/8fdc6d8df0d7a0dc97e91a4895b50f]
+maj-25 13:22:47.040 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 3 -- submitted tasks are shown below
+~> TaskHandler[id: 6; name: deepvariant_workflow:DEEP_VARIANT (HG004); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/a8/113e814a0d8e94d1a73376ad52a7cb]
+~> TaskHandler[id: 10; name: deepvariant_workflow:DEEP_VARIANT (HG003); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/37/2095ac269c5660c4d90817a403ca1d]
+~> TaskHandler[id: 14; name: deepvariant_workflow:DEEP_VARIANT (HG002); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/60/8fdc6d8df0d7a0dc97e91a4895b50f]
+maj-25 13:27:47.086 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 3 -- submitted tasks are shown below
+~> TaskHandler[id: 6; name: deepvariant_workflow:DEEP_VARIANT (HG004); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/a8/113e814a0d8e94d1a73376ad52a7cb]
+~> TaskHandler[id: 10; name: deepvariant_workflow:DEEP_VARIANT (HG003); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/37/2095ac269c5660c4d90817a403ca1d]
+~> TaskHandler[id: 14; name: deepvariant_workflow:DEEP_VARIANT (HG002); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/60/8fdc6d8df0d7a0dc97e91a4895b50f]
+maj-25 13:32:47.125 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 3 -- submitted tasks are shown below
+~> TaskHandler[id: 6; name: deepvariant_workflow:DEEP_VARIANT (HG004); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/a8/113e814a0d8e94d1a73376ad52a7cb]
+~> TaskHandler[id: 10; name: deepvariant_workflow:DEEP_VARIANT (HG003); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/37/2095ac269c5660c4d90817a403ca1d]
+~> TaskHandler[id: 14; name: deepvariant_workflow:DEEP_VARIANT (HG002); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/60/8fdc6d8df0d7a0dc97e91a4895b50f]
+maj-25 13:37:47.179 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 3 -- submitted tasks are shown below
+~> TaskHandler[id: 6; name: deepvariant_workflow:DEEP_VARIANT (HG004); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/a8/113e814a0d8e94d1a73376ad52a7cb]
+~> TaskHandler[id: 10; name: deepvariant_workflow:DEEP_VARIANT (HG003); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/37/2095ac269c5660c4d90817a403ca1d]
+~> TaskHandler[id: 14; name: deepvariant_workflow:DEEP_VARIANT (HG002); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/60/8fdc6d8df0d7a0dc97e91a4895b50f]
+maj-25 13:42:47.190 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 3 -- submitted tasks are shown below
+~> TaskHandler[id: 6; name: deepvariant_workflow:DEEP_VARIANT (HG004); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/a8/113e814a0d8e94d1a73376ad52a7cb]
+~> TaskHandler[id: 10; name: deepvariant_workflow:DEEP_VARIANT (HG003); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/37/2095ac269c5660c4d90817a403ca1d]
+~> TaskHandler[id: 14; name: deepvariant_workflow:DEEP_VARIANT (HG002); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/60/8fdc6d8df0d7a0dc97e91a4895b50f]
+maj-25 13:47:47.244 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 3 -- submitted tasks are shown below
+~> TaskHandler[id: 6; name: deepvariant_workflow:DEEP_VARIANT (HG004); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/a8/113e814a0d8e94d1a73376ad52a7cb]
+~> TaskHandler[id: 10; name: deepvariant_workflow:DEEP_VARIANT (HG003); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/37/2095ac269c5660c4d90817a403ca1d]
+~> TaskHandler[id: 14; name: deepvariant_workflow:DEEP_VARIANT (HG002); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/60/8fdc6d8df0d7a0dc97e91a4895b50f]
+maj-25 13:52:47.300 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 3 -- submitted tasks are shown below
+~> TaskHandler[id: 6; name: deepvariant_workflow:DEEP_VARIANT (HG004); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/a8/113e814a0d8e94d1a73376ad52a7cb]
+~> TaskHandler[id: 10; name: deepvariant_workflow:DEEP_VARIANT (HG003); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/37/2095ac269c5660c4d90817a403ca1d]
+~> TaskHandler[id: 14; name: deepvariant_workflow:DEEP_VARIANT (HG002); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/60/8fdc6d8df0d7a0dc97e91a4895b50f]
+maj-25 13:57:47.340 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 3 -- submitted tasks are shown below
+~> TaskHandler[id: 6; name: deepvariant_workflow:DEEP_VARIANT (HG004); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/a8/113e814a0d8e94d1a73376ad52a7cb]
+~> TaskHandler[id: 10; name: deepvariant_workflow:DEEP_VARIANT (HG003); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/37/2095ac269c5660c4d90817a403ca1d]
+~> TaskHandler[id: 14; name: deepvariant_workflow:DEEP_VARIANT (HG002); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/60/8fdc6d8df0d7a0dc97e91a4895b50f]
+maj-25 14:02:47.418 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 3 -- submitted tasks are shown below
+~> TaskHandler[id: 6; name: deepvariant_workflow:DEEP_VARIANT (HG004); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/a8/113e814a0d8e94d1a73376ad52a7cb]
+~> TaskHandler[id: 10; name: deepvariant_workflow:DEEP_VARIANT (HG003); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/37/2095ac269c5660c4d90817a403ca1d]
+~> TaskHandler[id: 14; name: deepvariant_workflow:DEEP_VARIANT (HG002); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/60/8fdc6d8df0d7a0dc97e91a4895b50f]
+maj-25 14:07:47.428 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 3 -- submitted tasks are shown below
+~> TaskHandler[id: 6; name: deepvariant_workflow:DEEP_VARIANT (HG004); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/a8/113e814a0d8e94d1a73376ad52a7cb]
+~> TaskHandler[id: 10; name: deepvariant_workflow:DEEP_VARIANT (HG003); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/37/2095ac269c5660c4d90817a403ca1d]
+~> TaskHandler[id: 14; name: deepvariant_workflow:DEEP_VARIANT (HG002); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/60/8fdc6d8df0d7a0dc97e91a4895b50f]
+maj-25 14:12:47.515 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 3 -- submitted tasks are shown below
+~> TaskHandler[id: 6; name: deepvariant_workflow:DEEP_VARIANT (HG004); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/a8/113e814a0d8e94d1a73376ad52a7cb]
+~> TaskHandler[id: 10; name: deepvariant_workflow:DEEP_VARIANT (HG003); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/37/2095ac269c5660c4d90817a403ca1d]
+~> TaskHandler[id: 14; name: deepvariant_workflow:DEEP_VARIANT (HG002); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/60/8fdc6d8df0d7a0dc97e91a4895b50f]
+maj-25 14:17:47.544 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 3 -- submitted tasks are shown below
+~> TaskHandler[id: 6; name: deepvariant_workflow:DEEP_VARIANT (HG004); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/a8/113e814a0d8e94d1a73376ad52a7cb]
+~> TaskHandler[id: 10; name: deepvariant_workflow:DEEP_VARIANT (HG003); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/37/2095ac269c5660c4d90817a403ca1d]
+~> TaskHandler[id: 14; name: deepvariant_workflow:DEEP_VARIANT (HG002); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/60/8fdc6d8df0d7a0dc97e91a4895b50f]
+maj-25 14:22:47.604 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 3 -- submitted tasks are shown below
+~> TaskHandler[id: 6; name: deepvariant_workflow:DEEP_VARIANT (HG004); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/a8/113e814a0d8e94d1a73376ad52a7cb]
+~> TaskHandler[id: 10; name: deepvariant_workflow:DEEP_VARIANT (HG003); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/37/2095ac269c5660c4d90817a403ca1d]
+~> TaskHandler[id: 14; name: deepvariant_workflow:DEEP_VARIANT (HG002); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/60/8fdc6d8df0d7a0dc97e91a4895b50f]
+maj-25 14:27:47.611 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 3 -- submitted tasks are shown below
+~> TaskHandler[id: 6; name: deepvariant_workflow:DEEP_VARIANT (HG004); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/a8/113e814a0d8e94d1a73376ad52a7cb]
+~> TaskHandler[id: 10; name: deepvariant_workflow:DEEP_VARIANT (HG003); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/37/2095ac269c5660c4d90817a403ca1d]
+~> TaskHandler[id: 14; name: deepvariant_workflow:DEEP_VARIANT (HG002); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/60/8fdc6d8df0d7a0dc97e91a4895b50f]
+maj-25 14:32:47.707 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 3 -- submitted tasks are shown below
+~> TaskHandler[id: 6; name: deepvariant_workflow:DEEP_VARIANT (HG004); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/a8/113e814a0d8e94d1a73376ad52a7cb]
+~> TaskHandler[id: 10; name: deepvariant_workflow:DEEP_VARIANT (HG003); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/37/2095ac269c5660c4d90817a403ca1d]
+~> TaskHandler[id: 14; name: deepvariant_workflow:DEEP_VARIANT (HG002); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/60/8fdc6d8df0d7a0dc97e91a4895b50f]
+maj-25 14:37:47.804 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 3 -- submitted tasks are shown below
+~> TaskHandler[id: 6; name: deepvariant_workflow:DEEP_VARIANT (HG004); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/a8/113e814a0d8e94d1a73376ad52a7cb]
+~> TaskHandler[id: 10; name: deepvariant_workflow:DEEP_VARIANT (HG003); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/37/2095ac269c5660c4d90817a403ca1d]
+~> TaskHandler[id: 14; name: deepvariant_workflow:DEEP_VARIANT (HG002); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/60/8fdc6d8df0d7a0dc97e91a4895b50f]
+maj-25 14:42:47.824 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 3 -- submitted tasks are shown below
+~> TaskHandler[id: 6; name: deepvariant_workflow:DEEP_VARIANT (HG004); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/a8/113e814a0d8e94d1a73376ad52a7cb]
+~> TaskHandler[id: 10; name: deepvariant_workflow:DEEP_VARIANT (HG003); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/37/2095ac269c5660c4d90817a403ca1d]
+~> TaskHandler[id: 14; name: deepvariant_workflow:DEEP_VARIANT (HG002); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/60/8fdc6d8df0d7a0dc97e91a4895b50f]
+maj-25 14:47:47.894 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 3 -- submitted tasks are shown below
+~> TaskHandler[id: 6; name: deepvariant_workflow:DEEP_VARIANT (HG004); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/a8/113e814a0d8e94d1a73376ad52a7cb]
+~> TaskHandler[id: 10; name: deepvariant_workflow:DEEP_VARIANT (HG003); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/37/2095ac269c5660c4d90817a403ca1d]
+~> TaskHandler[id: 14; name: deepvariant_workflow:DEEP_VARIANT (HG002); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/60/8fdc6d8df0d7a0dc97e91a4895b50f]
+maj-25 14:52:47.967 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 3 -- submitted tasks are shown below
+~> TaskHandler[id: 6; name: deepvariant_workflow:DEEP_VARIANT (HG004); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/a8/113e814a0d8e94d1a73376ad52a7cb]
+~> TaskHandler[id: 10; name: deepvariant_workflow:DEEP_VARIANT (HG003); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/37/2095ac269c5660c4d90817a403ca1d]
+~> TaskHandler[id: 14; name: deepvariant_workflow:DEEP_VARIANT (HG002); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/60/8fdc6d8df0d7a0dc97e91a4895b50f]
+maj-25 14:57:48.035 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 3 -- submitted tasks are shown below
+~> TaskHandler[id: 6; name: deepvariant_workflow:DEEP_VARIANT (HG004); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/a8/113e814a0d8e94d1a73376ad52a7cb]
+~> TaskHandler[id: 10; name: deepvariant_workflow:DEEP_VARIANT (HG003); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/37/2095ac269c5660c4d90817a403ca1d]
+~> TaskHandler[id: 14; name: deepvariant_workflow:DEEP_VARIANT (HG002); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/60/8fdc6d8df0d7a0dc97e91a4895b50f]
+maj-25 15:02:48.133 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 3 -- submitted tasks are shown below
+~> TaskHandler[id: 6; name: deepvariant_workflow:DEEP_VARIANT (HG004); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/a8/113e814a0d8e94d1a73376ad52a7cb]
+~> TaskHandler[id: 10; name: deepvariant_workflow:DEEP_VARIANT (HG003); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/37/2095ac269c5660c4d90817a403ca1d]
+~> TaskHandler[id: 14; name: deepvariant_workflow:DEEP_VARIANT (HG002); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/60/8fdc6d8df0d7a0dc97e91a4895b50f]
+maj-25 15:07:48.196 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 3 -- submitted tasks are shown below
+~> TaskHandler[id: 6; name: deepvariant_workflow:DEEP_VARIANT (HG004); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/a8/113e814a0d8e94d1a73376ad52a7cb]
+~> TaskHandler[id: 10; name: deepvariant_workflow:DEEP_VARIANT (HG003); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/37/2095ac269c5660c4d90817a403ca1d]
+~> TaskHandler[id: 14; name: deepvariant_workflow:DEEP_VARIANT (HG002); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/60/8fdc6d8df0d7a0dc97e91a4895b50f]
+maj-25 15:12:48.204 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 3 -- submitted tasks are shown below
+~> TaskHandler[id: 6; name: deepvariant_workflow:DEEP_VARIANT (HG004); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/a8/113e814a0d8e94d1a73376ad52a7cb]
+~> TaskHandler[id: 10; name: deepvariant_workflow:DEEP_VARIANT (HG003); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/37/2095ac269c5660c4d90817a403ca1d]
+~> TaskHandler[id: 14; name: deepvariant_workflow:DEEP_VARIANT (HG002); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/60/8fdc6d8df0d7a0dc97e91a4895b50f]
+maj-25 15:17:48.245 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 3 -- submitted tasks are shown below
+~> TaskHandler[id: 6; name: deepvariant_workflow:DEEP_VARIANT (HG004); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/a8/113e814a0d8e94d1a73376ad52a7cb]
+~> TaskHandler[id: 10; name: deepvariant_workflow:DEEP_VARIANT (HG003); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/37/2095ac269c5660c4d90817a403ca1d]
+~> TaskHandler[id: 14; name: deepvariant_workflow:DEEP_VARIANT (HG002); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/60/8fdc6d8df0d7a0dc97e91a4895b50f]
+maj-25 15:22:48.276 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 3 -- submitted tasks are shown below
+~> TaskHandler[id: 6; name: deepvariant_workflow:DEEP_VARIANT (HG004); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/a8/113e814a0d8e94d1a73376ad52a7cb]
+~> TaskHandler[id: 10; name: deepvariant_workflow:DEEP_VARIANT (HG003); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/37/2095ac269c5660c4d90817a403ca1d]
+~> TaskHandler[id: 14; name: deepvariant_workflow:DEEP_VARIANT (HG002); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/60/8fdc6d8df0d7a0dc97e91a4895b50f]
+maj-25 15:27:48.351 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 3 -- submitted tasks are shown below
+~> TaskHandler[id: 6; name: deepvariant_workflow:DEEP_VARIANT (HG004); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/a8/113e814a0d8e94d1a73376ad52a7cb]
+~> TaskHandler[id: 10; name: deepvariant_workflow:DEEP_VARIANT (HG003); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/37/2095ac269c5660c4d90817a403ca1d]
+~> TaskHandler[id: 14; name: deepvariant_workflow:DEEP_VARIANT (HG002); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/60/8fdc6d8df0d7a0dc97e91a4895b50f]
+maj-25 15:32:48.424 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 3 -- submitted tasks are shown below
+~> TaskHandler[id: 6; name: deepvariant_workflow:DEEP_VARIANT (HG004); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/a8/113e814a0d8e94d1a73376ad52a7cb]
+~> TaskHandler[id: 10; name: deepvariant_workflow:DEEP_VARIANT (HG003); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/37/2095ac269c5660c4d90817a403ca1d]
+~> TaskHandler[id: 14; name: deepvariant_workflow:DEEP_VARIANT (HG002); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/60/8fdc6d8df0d7a0dc97e91a4895b50f]
+maj-25 15:37:48.436 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 3 -- submitted tasks are shown below
+~> TaskHandler[id: 6; name: deepvariant_workflow:DEEP_VARIANT (HG004); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/a8/113e814a0d8e94d1a73376ad52a7cb]
+~> TaskHandler[id: 10; name: deepvariant_workflow:DEEP_VARIANT (HG003); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/37/2095ac269c5660c4d90817a403ca1d]
+~> TaskHandler[id: 14; name: deepvariant_workflow:DEEP_VARIANT (HG002); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/60/8fdc6d8df0d7a0dc97e91a4895b50f]
+maj-25 15:42:48.491 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 3 -- submitted tasks are shown below
+~> TaskHandler[id: 6; name: deepvariant_workflow:DEEP_VARIANT (HG004); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/a8/113e814a0d8e94d1a73376ad52a7cb]
+~> TaskHandler[id: 10; name: deepvariant_workflow:DEEP_VARIANT (HG003); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/37/2095ac269c5660c4d90817a403ca1d]
+~> TaskHandler[id: 14; name: deepvariant_workflow:DEEP_VARIANT (HG002); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/60/8fdc6d8df0d7a0dc97e91a4895b50f]
+maj-25 15:47:48.588 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 3 -- submitted tasks are shown below
+~> TaskHandler[id: 6; name: deepvariant_workflow:DEEP_VARIANT (HG004); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/a8/113e814a0d8e94d1a73376ad52a7cb]
+~> TaskHandler[id: 10; name: deepvariant_workflow:DEEP_VARIANT (HG003); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/37/2095ac269c5660c4d90817a403ca1d]
+~> TaskHandler[id: 14; name: deepvariant_workflow:DEEP_VARIANT (HG002); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/60/8fdc6d8df0d7a0dc97e91a4895b50f]
+maj-25 15:52:48.597 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 3 -- submitted tasks are shown below
+~> TaskHandler[id: 6; name: deepvariant_workflow:DEEP_VARIANT (HG004); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/a8/113e814a0d8e94d1a73376ad52a7cb]
+~> TaskHandler[id: 10; name: deepvariant_workflow:DEEP_VARIANT (HG003); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/37/2095ac269c5660c4d90817a403ca1d]
+~> TaskHandler[id: 14; name: deepvariant_workflow:DEEP_VARIANT (HG002); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/60/8fdc6d8df0d7a0dc97e91a4895b50f]
+maj-25 15:57:48.659 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 3 -- submitted tasks are shown below
+~> TaskHandler[id: 6; name: deepvariant_workflow:DEEP_VARIANT (HG004); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/a8/113e814a0d8e94d1a73376ad52a7cb]
+~> TaskHandler[id: 10; name: deepvariant_workflow:DEEP_VARIANT (HG003); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/37/2095ac269c5660c4d90817a403ca1d]
+~> TaskHandler[id: 14; name: deepvariant_workflow:DEEP_VARIANT (HG002); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/60/8fdc6d8df0d7a0dc97e91a4895b50f]
+maj-25 16:02:48.719 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 3 -- submitted tasks are shown below
+~> TaskHandler[id: 6; name: deepvariant_workflow:DEEP_VARIANT (HG004); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/a8/113e814a0d8e94d1a73376ad52a7cb]
+~> TaskHandler[id: 10; name: deepvariant_workflow:DEEP_VARIANT (HG003); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/37/2095ac269c5660c4d90817a403ca1d]
+~> TaskHandler[id: 14; name: deepvariant_workflow:DEEP_VARIANT (HG002); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/60/8fdc6d8df0d7a0dc97e91a4895b50f]
+maj-25 16:07:48.784 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 3 -- submitted tasks are shown below
+~> TaskHandler[id: 6; name: deepvariant_workflow:DEEP_VARIANT (HG004); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/a8/113e814a0d8e94d1a73376ad52a7cb]
+~> TaskHandler[id: 10; name: deepvariant_workflow:DEEP_VARIANT (HG003); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/37/2095ac269c5660c4d90817a403ca1d]
+~> TaskHandler[id: 14; name: deepvariant_workflow:DEEP_VARIANT (HG002); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/60/8fdc6d8df0d7a0dc97e91a4895b50f]
+maj-25 16:12:48.789 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 3 -- submitted tasks are shown below
+~> TaskHandler[id: 6; name: deepvariant_workflow:DEEP_VARIANT (HG004); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/a8/113e814a0d8e94d1a73376ad52a7cb]
+~> TaskHandler[id: 10; name: deepvariant_workflow:DEEP_VARIANT (HG003); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/37/2095ac269c5660c4d90817a403ca1d]
+~> TaskHandler[id: 14; name: deepvariant_workflow:DEEP_VARIANT (HG002); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/60/8fdc6d8df0d7a0dc97e91a4895b50f]
+maj-25 16:17:48.840 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 3 -- submitted tasks are shown below
+~> TaskHandler[id: 6; name: deepvariant_workflow:DEEP_VARIANT (HG004); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/a8/113e814a0d8e94d1a73376ad52a7cb]
+~> TaskHandler[id: 10; name: deepvariant_workflow:DEEP_VARIANT (HG003); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/37/2095ac269c5660c4d90817a403ca1d]
+~> TaskHandler[id: 14; name: deepvariant_workflow:DEEP_VARIANT (HG002); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/60/8fdc6d8df0d7a0dc97e91a4895b50f]
+maj-25 16:22:48.850 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 3 -- submitted tasks are shown below
+~> TaskHandler[id: 6; name: deepvariant_workflow:DEEP_VARIANT (HG004); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/a8/113e814a0d8e94d1a73376ad52a7cb]
+~> TaskHandler[id: 10; name: deepvariant_workflow:DEEP_VARIANT (HG003); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/37/2095ac269c5660c4d90817a403ca1d]
+~> TaskHandler[id: 14; name: deepvariant_workflow:DEEP_VARIANT (HG002); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/60/8fdc6d8df0d7a0dc97e91a4895b50f]
+maj-25 16:27:48.852 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 3 -- submitted tasks are shown below
+~> TaskHandler[id: 6; name: deepvariant_workflow:DEEP_VARIANT (HG004); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/a8/113e814a0d8e94d1a73376ad52a7cb]
+~> TaskHandler[id: 10; name: deepvariant_workflow:DEEP_VARIANT (HG003); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/37/2095ac269c5660c4d90817a403ca1d]
+~> TaskHandler[id: 14; name: deepvariant_workflow:DEEP_VARIANT (HG002); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/60/8fdc6d8df0d7a0dc97e91a4895b50f]
+maj-25 16:32:48.876 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 3 -- submitted tasks are shown below
+~> TaskHandler[id: 6; name: deepvariant_workflow:DEEP_VARIANT (HG004); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/a8/113e814a0d8e94d1a73376ad52a7cb]
+~> TaskHandler[id: 10; name: deepvariant_workflow:DEEP_VARIANT (HG003); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/37/2095ac269c5660c4d90817a403ca1d]
+~> TaskHandler[id: 14; name: deepvariant_workflow:DEEP_VARIANT (HG002); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/60/8fdc6d8df0d7a0dc97e91a4895b50f]
+maj-25 16:37:48.911 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 3 -- submitted tasks are shown below
+~> TaskHandler[id: 6; name: deepvariant_workflow:DEEP_VARIANT (HG004); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/a8/113e814a0d8e94d1a73376ad52a7cb]
+~> TaskHandler[id: 10; name: deepvariant_workflow:DEEP_VARIANT (HG003); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/37/2095ac269c5660c4d90817a403ca1d]
+~> TaskHandler[id: 14; name: deepvariant_workflow:DEEP_VARIANT (HG002); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/60/8fdc6d8df0d7a0dc97e91a4895b50f]
+maj-25 16:42:48.985 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 3 -- submitted tasks are shown below
+~> TaskHandler[id: 6; name: deepvariant_workflow:DEEP_VARIANT (HG004); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/a8/113e814a0d8e94d1a73376ad52a7cb]
+~> TaskHandler[id: 10; name: deepvariant_workflow:DEEP_VARIANT (HG003); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/37/2095ac269c5660c4d90817a403ca1d]
+~> TaskHandler[id: 14; name: deepvariant_workflow:DEEP_VARIANT (HG002); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/60/8fdc6d8df0d7a0dc97e91a4895b50f]
+maj-25 16:47:49.002 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 3 -- submitted tasks are shown below
+~> TaskHandler[id: 6; name: deepvariant_workflow:DEEP_VARIANT (HG004); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/a8/113e814a0d8e94d1a73376ad52a7cb]
+~> TaskHandler[id: 10; name: deepvariant_workflow:DEEP_VARIANT (HG003); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/37/2095ac269c5660c4d90817a403ca1d]
+~> TaskHandler[id: 14; name: deepvariant_workflow:DEEP_VARIANT (HG002); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/60/8fdc6d8df0d7a0dc97e91a4895b50f]
+maj-25 16:52:49.084 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 3 -- submitted tasks are shown below
+~> TaskHandler[id: 6; name: deepvariant_workflow:DEEP_VARIANT (HG004); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/a8/113e814a0d8e94d1a73376ad52a7cb]
+~> TaskHandler[id: 10; name: deepvariant_workflow:DEEP_VARIANT (HG003); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/37/2095ac269c5660c4d90817a403ca1d]
+~> TaskHandler[id: 14; name: deepvariant_workflow:DEEP_VARIANT (HG002); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/60/8fdc6d8df0d7a0dc97e91a4895b50f]
+maj-25 16:57:49.091 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 3 -- submitted tasks are shown below
+~> TaskHandler[id: 6; name: deepvariant_workflow:DEEP_VARIANT (HG004); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/a8/113e814a0d8e94d1a73376ad52a7cb]
+~> TaskHandler[id: 10; name: deepvariant_workflow:DEEP_VARIANT (HG003); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/37/2095ac269c5660c4d90817a403ca1d]
+~> TaskHandler[id: 14; name: deepvariant_workflow:DEEP_VARIANT (HG002); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/60/8fdc6d8df0d7a0dc97e91a4895b50f]
+maj-25 17:02:49.142 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 3 -- submitted tasks are shown below
+~> TaskHandler[id: 6; name: deepvariant_workflow:DEEP_VARIANT (HG004); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/a8/113e814a0d8e94d1a73376ad52a7cb]
+~> TaskHandler[id: 10; name: deepvariant_workflow:DEEP_VARIANT (HG003); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/37/2095ac269c5660c4d90817a403ca1d]
+~> TaskHandler[id: 14; name: deepvariant_workflow:DEEP_VARIANT (HG002); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/60/8fdc6d8df0d7a0dc97e91a4895b50f]
+maj-25 17:07:49.162 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 3 -- submitted tasks are shown below
+~> TaskHandler[id: 6; name: deepvariant_workflow:DEEP_VARIANT (HG004); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/a8/113e814a0d8e94d1a73376ad52a7cb]
+~> TaskHandler[id: 10; name: deepvariant_workflow:DEEP_VARIANT (HG003); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/37/2095ac269c5660c4d90817a403ca1d]
+~> TaskHandler[id: 14; name: deepvariant_workflow:DEEP_VARIANT (HG002); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/60/8fdc6d8df0d7a0dc97e91a4895b50f]
+maj-25 17:12:49.180 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 3 -- submitted tasks are shown below
+~> TaskHandler[id: 6; name: deepvariant_workflow:DEEP_VARIANT (HG004); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/a8/113e814a0d8e94d1a73376ad52a7cb]
+~> TaskHandler[id: 10; name: deepvariant_workflow:DEEP_VARIANT (HG003); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/37/2095ac269c5660c4d90817a403ca1d]
+~> TaskHandler[id: 14; name: deepvariant_workflow:DEEP_VARIANT (HG002); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/60/8fdc6d8df0d7a0dc97e91a4895b50f]
+maj-25 17:17:49.264 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 3 -- submitted tasks are shown below
+~> TaskHandler[id: 6; name: deepvariant_workflow:DEEP_VARIANT (HG004); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/a8/113e814a0d8e94d1a73376ad52a7cb]
+~> TaskHandler[id: 10; name: deepvariant_workflow:DEEP_VARIANT (HG003); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/37/2095ac269c5660c4d90817a403ca1d]
+~> TaskHandler[id: 14; name: deepvariant_workflow:DEEP_VARIANT (HG002); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/60/8fdc6d8df0d7a0dc97e91a4895b50f]
+maj-25 17:22:49.267 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 3 -- submitted tasks are shown below
+~> TaskHandler[id: 6; name: deepvariant_workflow:DEEP_VARIANT (HG004); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/a8/113e814a0d8e94d1a73376ad52a7cb]
+~> TaskHandler[id: 10; name: deepvariant_workflow:DEEP_VARIANT (HG003); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/37/2095ac269c5660c4d90817a403ca1d]
+~> TaskHandler[id: 14; name: deepvariant_workflow:DEEP_VARIANT (HG002); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/60/8fdc6d8df0d7a0dc97e91a4895b50f]
+maj-25 17:27:49.328 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 3 -- submitted tasks are shown below
+~> TaskHandler[id: 6; name: deepvariant_workflow:DEEP_VARIANT (HG004); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/a8/113e814a0d8e94d1a73376ad52a7cb]
+~> TaskHandler[id: 10; name: deepvariant_workflow:DEEP_VARIANT (HG003); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/37/2095ac269c5660c4d90817a403ca1d]
+~> TaskHandler[id: 14; name: deepvariant_workflow:DEEP_VARIANT (HG002); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/60/8fdc6d8df0d7a0dc97e91a4895b50f]
+maj-25 17:32:49.375 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 3 -- submitted tasks are shown below
+~> TaskHandler[id: 6; name: deepvariant_workflow:DEEP_VARIANT (HG004); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/a8/113e814a0d8e94d1a73376ad52a7cb]
+~> TaskHandler[id: 10; name: deepvariant_workflow:DEEP_VARIANT (HG003); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/37/2095ac269c5660c4d90817a403ca1d]
+~> TaskHandler[id: 14; name: deepvariant_workflow:DEEP_VARIANT (HG002); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/60/8fdc6d8df0d7a0dc97e91a4895b50f]
+maj-25 17:37:49.412 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 3 -- submitted tasks are shown below
+~> TaskHandler[id: 6; name: deepvariant_workflow:DEEP_VARIANT (HG004); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/a8/113e814a0d8e94d1a73376ad52a7cb]
+~> TaskHandler[id: 10; name: deepvariant_workflow:DEEP_VARIANT (HG003); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/37/2095ac269c5660c4d90817a403ca1d]
+~> TaskHandler[id: 14; name: deepvariant_workflow:DEEP_VARIANT (HG002); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/60/8fdc6d8df0d7a0dc97e91a4895b50f]
+maj-25 17:42:49.419 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 3 -- submitted tasks are shown below
+~> TaskHandler[id: 6; name: deepvariant_workflow:DEEP_VARIANT (HG004); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/a8/113e814a0d8e94d1a73376ad52a7cb]
+~> TaskHandler[id: 10; name: deepvariant_workflow:DEEP_VARIANT (HG003); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/37/2095ac269c5660c4d90817a403ca1d]
+~> TaskHandler[id: 14; name: deepvariant_workflow:DEEP_VARIANT (HG002); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/60/8fdc6d8df0d7a0dc97e91a4895b50f]
+maj-25 17:47:49.516 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 3 -- submitted tasks are shown below
+~> TaskHandler[id: 6; name: deepvariant_workflow:DEEP_VARIANT (HG004); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/a8/113e814a0d8e94d1a73376ad52a7cb]
+~> TaskHandler[id: 10; name: deepvariant_workflow:DEEP_VARIANT (HG003); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/37/2095ac269c5660c4d90817a403ca1d]
+~> TaskHandler[id: 14; name: deepvariant_workflow:DEEP_VARIANT (HG002); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/60/8fdc6d8df0d7a0dc97e91a4895b50f]
+maj-25 17:52:49.554 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 3 -- submitted tasks are shown below
+~> TaskHandler[id: 6; name: deepvariant_workflow:DEEP_VARIANT (HG004); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/a8/113e814a0d8e94d1a73376ad52a7cb]
+~> TaskHandler[id: 10; name: deepvariant_workflow:DEEP_VARIANT (HG003); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/37/2095ac269c5660c4d90817a403ca1d]
+~> TaskHandler[id: 14; name: deepvariant_workflow:DEEP_VARIANT (HG002); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/60/8fdc6d8df0d7a0dc97e91a4895b50f]
+maj-25 17:57:49.600 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 3 -- submitted tasks are shown below
+~> TaskHandler[id: 6; name: deepvariant_workflow:DEEP_VARIANT (HG004); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/a8/113e814a0d8e94d1a73376ad52a7cb]
+~> TaskHandler[id: 10; name: deepvariant_workflow:DEEP_VARIANT (HG003); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/37/2095ac269c5660c4d90817a403ca1d]
+~> TaskHandler[id: 14; name: deepvariant_workflow:DEEP_VARIANT (HG002); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/60/8fdc6d8df0d7a0dc97e91a4895b50f]
+maj-25 18:02:49.610 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 3 -- submitted tasks are shown below
+~> TaskHandler[id: 6; name: deepvariant_workflow:DEEP_VARIANT (HG004); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/a8/113e814a0d8e94d1a73376ad52a7cb]
+~> TaskHandler[id: 10; name: deepvariant_workflow:DEEP_VARIANT (HG003); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/37/2095ac269c5660c4d90817a403ca1d]
+~> TaskHandler[id: 14; name: deepvariant_workflow:DEEP_VARIANT (HG002); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/60/8fdc6d8df0d7a0dc97e91a4895b50f]
+maj-25 18:07:49.648 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 3 -- submitted tasks are shown below
+~> TaskHandler[id: 6; name: deepvariant_workflow:DEEP_VARIANT (HG004); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/a8/113e814a0d8e94d1a73376ad52a7cb]
+~> TaskHandler[id: 10; name: deepvariant_workflow:DEEP_VARIANT (HG003); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/37/2095ac269c5660c4d90817a403ca1d]
+~> TaskHandler[id: 14; name: deepvariant_workflow:DEEP_VARIANT (HG002); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/60/8fdc6d8df0d7a0dc97e91a4895b50f]
+maj-25 18:12:49.679 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 3 -- submitted tasks are shown below
+~> TaskHandler[id: 6; name: deepvariant_workflow:DEEP_VARIANT (HG004); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/a8/113e814a0d8e94d1a73376ad52a7cb]
+~> TaskHandler[id: 10; name: deepvariant_workflow:DEEP_VARIANT (HG003); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/37/2095ac269c5660c4d90817a403ca1d]
+~> TaskHandler[id: 14; name: deepvariant_workflow:DEEP_VARIANT (HG002); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/60/8fdc6d8df0d7a0dc97e91a4895b50f]
+maj-25 18:17:49.719 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 3 -- submitted tasks are shown below
+~> TaskHandler[id: 6; name: deepvariant_workflow:DEEP_VARIANT (HG004); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/a8/113e814a0d8e94d1a73376ad52a7cb]
+~> TaskHandler[id: 10; name: deepvariant_workflow:DEEP_VARIANT (HG003); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/37/2095ac269c5660c4d90817a403ca1d]
+~> TaskHandler[id: 14; name: deepvariant_workflow:DEEP_VARIANT (HG002); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/60/8fdc6d8df0d7a0dc97e91a4895b50f]
+maj-25 18:22:49.748 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 3 -- submitted tasks are shown below
+~> TaskHandler[id: 6; name: deepvariant_workflow:DEEP_VARIANT (HG004); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/a8/113e814a0d8e94d1a73376ad52a7cb]
+~> TaskHandler[id: 10; name: deepvariant_workflow:DEEP_VARIANT (HG003); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/37/2095ac269c5660c4d90817a403ca1d]
+~> TaskHandler[id: 14; name: deepvariant_workflow:DEEP_VARIANT (HG002); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/60/8fdc6d8df0d7a0dc97e91a4895b50f]
+maj-25 18:27:49.780 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 3 -- submitted tasks are shown below
+~> TaskHandler[id: 6; name: deepvariant_workflow:DEEP_VARIANT (HG004); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/a8/113e814a0d8e94d1a73376ad52a7cb]
+~> TaskHandler[id: 10; name: deepvariant_workflow:DEEP_VARIANT (HG003); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/37/2095ac269c5660c4d90817a403ca1d]
+~> TaskHandler[id: 14; name: deepvariant_workflow:DEEP_VARIANT (HG002); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/60/8fdc6d8df0d7a0dc97e91a4895b50f]
+maj-25 18:32:49.817 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 3 -- submitted tasks are shown below
+~> TaskHandler[id: 6; name: deepvariant_workflow:DEEP_VARIANT (HG004); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/a8/113e814a0d8e94d1a73376ad52a7cb]
+~> TaskHandler[id: 10; name: deepvariant_workflow:DEEP_VARIANT (HG003); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/37/2095ac269c5660c4d90817a403ca1d]
+~> TaskHandler[id: 14; name: deepvariant_workflow:DEEP_VARIANT (HG002); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/60/8fdc6d8df0d7a0dc97e91a4895b50f]
+maj-25 18:37:49.847 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 3 -- submitted tasks are shown below
+~> TaskHandler[id: 6; name: deepvariant_workflow:DEEP_VARIANT (HG004); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/a8/113e814a0d8e94d1a73376ad52a7cb]
+~> TaskHandler[id: 10; name: deepvariant_workflow:DEEP_VARIANT (HG003); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/37/2095ac269c5660c4d90817a403ca1d]
+~> TaskHandler[id: 14; name: deepvariant_workflow:DEEP_VARIANT (HG002); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/60/8fdc6d8df0d7a0dc97e91a4895b50f]
+maj-25 18:42:49.944 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 3 -- submitted tasks are shown below
+~> TaskHandler[id: 6; name: deepvariant_workflow:DEEP_VARIANT (HG004); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/a8/113e814a0d8e94d1a73376ad52a7cb]
+~> TaskHandler[id: 10; name: deepvariant_workflow:DEEP_VARIANT (HG003); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/37/2095ac269c5660c4d90817a403ca1d]
+~> TaskHandler[id: 14; name: deepvariant_workflow:DEEP_VARIANT (HG002); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/60/8fdc6d8df0d7a0dc97e91a4895b50f]
+maj-25 18:47:49.962 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 3 -- submitted tasks are shown below
+~> TaskHandler[id: 6; name: deepvariant_workflow:DEEP_VARIANT (HG004); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/a8/113e814a0d8e94d1a73376ad52a7cb]
+~> TaskHandler[id: 10; name: deepvariant_workflow:DEEP_VARIANT (HG003); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/37/2095ac269c5660c4d90817a403ca1d]
+~> TaskHandler[id: 14; name: deepvariant_workflow:DEEP_VARIANT (HG002); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/60/8fdc6d8df0d7a0dc97e91a4895b50f]
+maj-25 18:52:50.030 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 3 -- submitted tasks are shown below
+~> TaskHandler[id: 6; name: deepvariant_workflow:DEEP_VARIANT (HG004); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/a8/113e814a0d8e94d1a73376ad52a7cb]
+~> TaskHandler[id: 10; name: deepvariant_workflow:DEEP_VARIANT (HG003); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/37/2095ac269c5660c4d90817a403ca1d]
+~> TaskHandler[id: 14; name: deepvariant_workflow:DEEP_VARIANT (HG002); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/60/8fdc6d8df0d7a0dc97e91a4895b50f]
+maj-25 18:57:50.033 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 3 -- submitted tasks are shown below
+~> TaskHandler[id: 6; name: deepvariant_workflow:DEEP_VARIANT (HG004); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/a8/113e814a0d8e94d1a73376ad52a7cb]
+~> TaskHandler[id: 10; name: deepvariant_workflow:DEEP_VARIANT (HG003); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/37/2095ac269c5660c4d90817a403ca1d]
+~> TaskHandler[id: 14; name: deepvariant_workflow:DEEP_VARIANT (HG002); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/60/8fdc6d8df0d7a0dc97e91a4895b50f]
+maj-25 19:02:50.099 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 3 -- submitted tasks are shown below
+~> TaskHandler[id: 6; name: deepvariant_workflow:DEEP_VARIANT (HG004); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/a8/113e814a0d8e94d1a73376ad52a7cb]
+~> TaskHandler[id: 10; name: deepvariant_workflow:DEEP_VARIANT (HG003); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/37/2095ac269c5660c4d90817a403ca1d]
+~> TaskHandler[id: 14; name: deepvariant_workflow:DEEP_VARIANT (HG002); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/60/8fdc6d8df0d7a0dc97e91a4895b50f]
+maj-25 19:07:50.168 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 3 -- submitted tasks are shown below
+~> TaskHandler[id: 6; name: deepvariant_workflow:DEEP_VARIANT (HG004); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/a8/113e814a0d8e94d1a73376ad52a7cb]
+~> TaskHandler[id: 10; name: deepvariant_workflow:DEEP_VARIANT (HG003); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/37/2095ac269c5660c4d90817a403ca1d]
+~> TaskHandler[id: 14; name: deepvariant_workflow:DEEP_VARIANT (HG002); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/60/8fdc6d8df0d7a0dc97e91a4895b50f]
+maj-25 19:12:50.227 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 3 -- submitted tasks are shown below
+~> TaskHandler[id: 6; name: deepvariant_workflow:DEEP_VARIANT (HG004); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/a8/113e814a0d8e94d1a73376ad52a7cb]
+~> TaskHandler[id: 10; name: deepvariant_workflow:DEEP_VARIANT (HG003); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/37/2095ac269c5660c4d90817a403ca1d]
+~> TaskHandler[id: 14; name: deepvariant_workflow:DEEP_VARIANT (HG002); status: RUNNING; exit: -; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/60/8fdc6d8df0d7a0dc97e91a4895b50f]
+maj-25 19:16:28.752 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 10; name: deepvariant_workflow:DEEP_VARIANT (HG003); status: COMPLETED; exit: 0; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/37/2095ac269c5660c4d90817a403ca1d]
+maj-25 19:16:28.897 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+maj-25 19:16:28.898 [Task submitter] INFO  nextflow.Session - [43/d5f6aa] Submitted process > hiphase_workflow:HIPHASE_PHASING (HG004)
+maj-25 19:16:30.162 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 21; name: hiphase_workflow:HIPHASE_PHASING (HG004); status: COMPLETED; exit: 74; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/43/d5f6aad67c6b7092cb017264f3bfff]
+maj-25 19:16:30.194 [TaskFinalizer-9] DEBUG nextflow.processor.TaskProcessor - Handling unexpected condition for
+  task: name=hiphase_workflow:HIPHASE_PHASING (HG004); work-dir=/home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/43/d5f6aad67c6b7092cb017264f3bfff
+  error [nextflow.exception.ProcessFailedException]: Process `hiphase_workflow:HIPHASE_PHASING (HG004)` terminated with an error exit status (74)
+maj-25 19:16:30.278 [TaskFinalizer-9] ERROR nextflow.processor.TaskProcessor - Error executing process > 'hiphase_workflow:HIPHASE_PHASING (HG004)'
+
+Caused by:
+  Process `hiphase_workflow:HIPHASE_PHASING (HG004)` terminated with an error exit status (74)
+
+
+Command executed:
+
+  hiphase             --reference Homo_sapiens_assembly38.fasta             --bam HG004_sorted.bam             --output-bam HG004_hiphase.bam             --vcf HG003_dv.vcf.gz             --output-vcf HG004_hiphase.dv.phased.vcf.gz             --vcf HG004.pbsv.vcf.gz             --output-vcf HG004_hiphase.pbsv.phased.vcf.gz             --vcf HG004.sniffles.vcf.gz             --output-vcf HG004_hiphase.sniffles.phased.vcf.gz             --threads 8
+
+Command exit status:
+  74
+
+Command output:
+  (empty)
+
+Command error:
+  [2026-05-25T17:16:29.859Z INFO  hiphase::cli] Alignment file: "HG004_sorted.bam"
+  [2026-05-25T17:16:29.859Z INFO  hiphase::cli] Variant file: "HG003_dv.vcf.gz"
+  [2026-05-25T17:16:29.861Z INFO  hiphase::cli] Variant file: "HG004.pbsv.vcf.gz"
+  [2026-05-25T17:16:29.862Z INFO  hiphase::cli] Variant file: "HG004.sniffles.vcf.gz"
+  [2026-05-25T17:16:29.863Z INFO  hiphase::cli] Reference file: "Homo_sapiens_assembly38.fasta"
+  [2026-05-25T17:16:29.863Z INFO  hiphase::cli] Variant filtering:
+  [2026-05-25T17:16:29.863Z INFO  hiphase::cli] 	Minimum call quality: 0
+  [2026-05-25T17:16:29.863Z INFO  hiphase::cli] 	Minimum mapping quality: 5
+  [2026-05-25T17:16:29.863Z INFO  hiphase::cli] 	Minimum matched alleles: 2
+  [2026-05-25T17:16:29.863Z INFO  hiphase::cli] Phase block generation:
+  [2026-05-25T17:16:29.863Z INFO  hiphase::cli] 	Minimum spanning reads: 1
+  [2026-05-25T17:16:29.863Z INFO  hiphase::cli] 	Supplemental mapping block joins: ENABLED
+  [2026-05-25T17:16:29.863Z INFO  hiphase::cli] 	Phase singleton blocks: DISABLED
+  [2026-05-25T17:16:29.863Z INFO  hiphase::cli] 	Minimum connecting reads: 1
+  [2026-05-25T17:16:29.863Z INFO  hiphase::cli] Allele assignment:
+  [2026-05-25T17:16:29.863Z INFO  hiphase::cli] 	Local re-alignment maximum reference buffer: +-15 bp
+  [2026-05-25T17:16:29.863Z INFO  hiphase::cli] 	Global re-alignment max edit distance: 500
+  [2026-05-25T17:16:29.863Z INFO  hiphase::cli] 	Global prune distance: 500
+  [2026-05-25T17:16:29.863Z INFO  hiphase::cli] Phasing:
+  [2026-05-25T17:16:29.863Z INFO  hiphase::cli] 	Optimize variant order: DISABLED
+  [2026-05-25T17:16:29.863Z INFO  hiphase::cli] 	Minimum queue size: 1000
+  [2026-05-25T17:16:29.863Z INFO  hiphase::cli] 	Queue increment: 3
+  [2026-05-25T17:16:29.863Z INFO  hiphase::cli] Processing threads: 8
+  [2026-05-25T17:16:29.863Z INFO  hiphase::cli] I/O threads: 4
+  [2026-05-25T17:16:30.055Z ERROR hiphase] Error during file loading: Sample name "HG003" was not found in VCF: "HG004.pbsv.vcf.gz"
+
+Work dir:
+  /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/43/d5f6aad67c6b7092cb017264f3bfff
+
+Container:
+  /home/mateuszsypniewski/projects/nf-longread/./deployment/singularity/sif/core.sif
+
+Tip: when you have fixed the problem you can continue the execution adding the option `-resume` to the run command line
+maj-25 19:16:30.298 [TaskFinalizer-9] DEBUG nextflow.Session - Session aborted -- Cause: Process `hiphase_workflow:HIPHASE_PHASING (HG004)` terminated with an error exit status (74)
+maj-25 19:16:30.328 [Task monitor] DEBUG n.processor.TaskPollingMonitor - <<< barrier arrives (monitor: local) - terminating tasks monitor poll loop
+maj-25 19:16:30.394 [TaskFinalizer-9] DEBUG nextflow.Session - The following nodes are still active:
+[process] deepvariant_workflow:GLNEXUS
+  status=ACTIVE
+  port 0: (value) OPEN  ; channel: gvcf
+  port 1: (value) OPEN  ; channel: gvcf_tbi
+  port 2: (cntrl) -     ; channel: $
+
+[process] deepvariant_workflow:NORM_MULTISAMPLE
+  status=ACTIVE
+  port 0: (value) OPEN  ; channel: -
+  port 1: (value) bound ; channel: -
+  port 2: (cntrl) -     ; channel: $
+
+[process] deepvariant_workflow:DV_EXTRACT_GT
+  status=ACTIVE
+  port 0: (value) OPEN  ; channel: -
+  port 1: (cntrl) -     ; channel: $
+
+[process] hiphase_workflow:HIPHASE_PHASING
+  status=ACTIVE
+  port 0: (queue) OPEN  ; channel: -
+  port 1: (queue) OPEN  ; channel: -
+  port 2: (queue) OPEN  ; channel: -
+  port 3: (queue) OPEN  ; channel: -
+  port 4: (value) bound ; channel: -
+  port 5: (cntrl) -     ; channel: $
+
+[process] methylation_workflow:MINIMOD
+  status=ACTIVE
+  port 0: (queue) OPEN  ; channel: -
+  port 1: (value) bound ; channel: -
+  port 2: (cntrl) -     ; channel: $
+
+[process] methylation_workflow:PB_CPG
+  status=ACTIVE
+  port 0: (queue) OPEN  ; channel: -
+  port 1: (value) bound ; channel: -
+  port 2: (cntrl) -     ; channel: $
+
+maj-25 19:16:30.432 [TaskFinalizer-9] WARN  n.processor.TaskPollingMonitor - Killing running tasks (2)
+maj-25 19:16:30.515 [TaskFinalizer-9] DEBUG n.trace.WorkflowStatsObserver - Workflow completed > WorkflowStats[succeededCount=18; failedCount=1; ignoredCount=0; cachedCount=0; pendingCount=0; submittedCount=0; runningCount=0; retriesCount=0; abortedCount=2; succeedDuration=4d 9h 43m 19s; failedDuration=9.7s; cachedDuration=0ms;loadCpus=0; loadMemory=0; peakRunning=6; peakCpus=48; peakMemory=192 GB; ]
+maj-25 19:16:30.765 [TaskFinalizer-9] DEBUG nextflow.trace.ReportObserver - Workflow completed -- rendering execution report
+maj-25 19:16:31.589 [TaskFinalizer-9] DEBUG nextflow.trace.TimelineObserver - Workflow completed -- rendering execution timeline
+maj-25 19:16:31.698 [TaskFinalizer-9] DEBUG nextflow.trace.TraceFileObserver - Workflow completed -- saving trace file
+maj-25 19:16:31.704 [main] DEBUG nextflow.Session - Session await > all processes finished
+maj-25 19:16:31.704 [main] DEBUG nextflow.Session - Session await > all barriers passed
+maj-25 19:16:31.707 [main] DEBUG n.trace.WorkflowStatsObserver - Workflow completed > WorkflowStats[succeededCount=18; failedCount=1; ignoredCount=0; cachedCount=0; pendingCount=0; submittedCount=0; runningCount=0; retriesCount=0; abortedCount=2; succeedDuration=4d 9h 43m 19s; failedDuration=9.7s; cachedDuration=0ms;loadCpus=0; loadMemory=0; peakRunning=6; peakCpus=48; peakMemory=192 GB; ]
+maj-25 19:16:31.716 [main] DEBUG nextflow.trace.ReportObserver - Workflow completed -- rendering execution report
+maj-25 19:16:33.096 [main] DEBUG nextflow.trace.TimelineObserver - Workflow completed -- rendering execution timeline
+maj-25 19:16:33.159 [main] DEBUG nextflow.trace.TraceFileObserver - Workflow completed -- saving trace file
+maj-25 19:16:33.192 [main] DEBUG nextflow.cache.CacheDB - Closing CacheDB done
+maj-25 19:16:33.230 [main] DEBUG nextflow.script.ScriptRunner - > Execution complete -- Goodbye

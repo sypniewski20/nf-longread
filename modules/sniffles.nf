@@ -1,4 +1,4 @@
-process SNIFFLES {
+process SNIFFLES_SNF {
     label "core"
     label "large"
     tag "${sample}"
@@ -6,16 +6,37 @@ process SNIFFLES {
 
     input:
         tuple val(sample), path(bam), path(bai)
-        tuple path(fasta), path(fai)
-
     output:
-        tuple val(sample), path("${sample}.sniffles.vcf.gz"), path("${sample}.sniffles.vcf.gz.tbi")
+        tuple val(sample), path("${sample}.sniffles.vcf.gz"), path("${sample}.sniffles.vcf.gz.tbi"), emit: vcf
+        path("${sample}.sniffles.snf"), emit: snf
     script:
         """
-        sniffles \
-            --input ${bam} \
-            --vcf ${sample}.sniffles.vcf.gz \
-            --reference ${fasta} \
-            --threads ${task.cpus}
+
+        sniffles --input ${bam} \
+        --vcf ${sample}.sniffles.vcf.gz \
+        --snf ${sample}.sniffles.snf
+
+        """
+}
+
+process SNIFFLES_MULTISAMPLE {
+    label "core"
+    label "large"
+    publishDir "${params.outfolder}/${params.runID}/sniffles", mode: 'copy', overwrite: true
+    input:
+        path(snfs)
+
+    output:
+        tuple path("multisample.sniffles.vcf.gz"), path("multisample.sniffles.vcf.gz.tbi")
+    script:
+        """
+
+        sniffles --input ${snfs} \
+        --vcf multisample.sniffles.vcf
+
+        bgzip multisample.sniffles.vcf
+        tabix -p vcf multisample.sniffles.vcf.gz
+
+
         """
 }

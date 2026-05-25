@@ -4,11 +4,13 @@ channels:
   - bioconda
 dependencies:
   - samtools
+  - bcftools
   - pbmm2
   - pbsv
   - sniffles
   - hiphase
   - pb-cpg-tools
   - minimod
+  - survivor
 platforms:
   - linux-64

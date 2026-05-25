@@ -13,7 +13,7 @@
 version: 1
 metadata:
   content_hash:
-    linux-64: d0ecf39f64010ff5e9eeb0443db15a24a4d62620e662a7f4590363cd0bc2812a
+    linux-64: 831d9c92ff68c40a6e601bd1872cbb2d7240f30fbba41a1e0087ea662eba21e9
   channels:
   - url: conda-forge
     used_env_vars: []
@@ -35,6 +35,22 @@ package:
   hash:
     md5: a9f577daf3de00bca7c3c76c0ecbd1de
     sha256: 1dd3fffd892081df9726d7eb7e0dea6198962ba775bd88842135a4ddb4deb3c9
+  category: main
+  optional: false
+- name: bcftools
+  version: 1.23.1
+  manager: conda
+  platform: linux-64
+  dependencies:
+    gsl: '>=2.7,<2.8.0a0'
+    htslib: '>=1.23,<1.24.0a0'
+    libgcc: '>=14'
+    libzlib: '>=1.3.1,<2.0a0'
+    perl: ''
+  url: https://conda.anaconda.org/bioconda/linux-64/bcftools-1.23.1-hb2cee57_0.conda
+  hash:
+    md5: 7fa25d1694f3a94ebb2c71dfc265f792
+    sha256: 7a1727a4c13a30437d6dabe9aa821d0d5fd0e4a49233cc82e8b10977ceb7efb7
   category: main
   optional: false
 - name: bzip2
@@ -73,6 +89,20 @@ package:
   hash:
     md5: 489b8e97e666c93f68fdb35c3c9b957f
     sha256: 9812a303a1395e1dafbd92e5bc8a1ff6013bcbba0a09c7f03a8d23e43560aa9b
+  category: main
+  optional: false
+- name: gsl
+  version: '2.7'
+  manager: conda
+  platform: linux-64
+  dependencies:
+    libblas: '>=3.8.0,<4.0a0'
+    libcblas: '>=3.8.0,<4.0a0'
+    libgcc-ng: '>=9.3.0'
+  url: https://conda.anaconda.org/conda-forge/linux-64/gsl-2.7-he838d99_0.tar.bz2
+  hash:
+    md5: fec079ba39c9cca093bf4c00001825de
+    sha256: 132a918b676dd1f533d7c6f95e567abf7081a6ea3251c3280de35ef600e0da87
   category: main
   optional: false
 - name: hiphase
@@ -443,6 +473,18 @@ package:
     sha256: 3f0edf1280e2f6684a986f821eaa3e123d2694a00b31b96ca0d4a4c12c129231
   category: main
   optional: false
+- name: libxcrypt
+  version: 4.4.36
+  manager: conda
+  platform: linux-64
+  dependencies:
+    libgcc-ng: '>=12'
+  url: https://conda.anaconda.org/conda-forge/linux-64/libxcrypt-4.4.36-hd590300_1.conda
+  hash:
+    md5: 5aa797f8787fe7a17d1b0821485b5adc
+    sha256: 6ae68e0b86423ef188196fff6207ed0c8195dd84273cb5623b85aa08033a410c
+  category: main
+  optional: false
 - name: libzlib
   version: 1.3.2
   manager: conda
@@ -467,23 +509,6 @@ package:
   hash:
     md5: eb59e0ddbe9736def1b44f966688171f
     sha256: 6bd84cc05d32d5f7118cc63c25fad70d61fd89fd662c2c58a678bd433686a418
-  category: main
-  optional: false
-- name: mosdepth
-  version: 0.3.14
-  manager: conda
-  platform: linux-64
-  dependencies:
-    __glibc: '>=2.17,<3.0.a0'
-    bzip2: '>=1.0.8,<2.0a0'
-    htslib: '>=1.23.1,<1.24.0a0'
-    libgcc: '>=14'
-    liblzma: '>=5.8.3,<6.0a0'
-    libzlib: '>=1.3.2,<2.0a0'
-  url: https://conda.anaconda.org/bioconda/linux-64/mosdepth-0.3.14-h05c3d44_0.conda
-  hash:
-    md5: 55ce4f61d9716b92da5394f2838a6ca4
-    sha256: 744adeff333c5fc97cf0855eeb980fca5c6546a2e1917d66828632bef567a10d
   category: main
   optional: false
 - name: ncurses
@@ -563,6 +588,19 @@ package:
   hash:
     md5: b3dca3f5fc44acc93b56dea5b6db7568
     sha256: 13d99327b3632e682e34d345b8abf40a735c5cff2558009349f24a5c941e8bc9
+  category: main
+  optional: false
+- name: perl
+  version: 5.32.1
+  manager: conda
+  platform: linux-64
+  dependencies:
+    libgcc-ng: '>=12'
+    libxcrypt: '>=4.4.36'
+  url: https://conda.anaconda.org/conda-forge/linux-64/perl-5.32.1-7_hd590300_perl5.conda
+  hash:
+    md5: f2cfec9406850991f4e3d960cc9e3321
+    sha256: 9ec32b6936b0e37bcb0ed34f22ec3116e75b3c0964f9f50ecea5f58734ed6ce9
   category: main
   optional: false
 - name: psutil
@@ -715,6 +753,20 @@ package:
   hash:
     md5: 939c1b07d6931f8d14ac0def38015b3e
     sha256: c72153ba6c818762d1ac8a06c33a717b3351c7eaef73c8eed5368eafdab97ec4
+  category: main
+  optional: false
+- name: survivor
+  version: 1.0.7
+  manager: conda
+  platform: linux-64
+  dependencies:
+    libgcc: '>=13'
+    libstdcxx: '>=13'
+    libzlib: '>=1.3.1,<2.0a0'
+  url: https://conda.anaconda.org/bioconda/linux-64/survivor-1.0.7-h077b44d_7.conda
+  hash:
+    md5: c237d252441eb223de0a00e99901775e
+    sha256: 6f146b874f295a429ae18ea279037b5611798d69ce7d41fd6139e28258b4d620
   category: main
   optional: false
 - name: tk

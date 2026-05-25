@@ -1,5 +1,5 @@
 process HIPHASE_PHASING {
-    label 'hiphase'
+    label 'core'
     label 'large'
     tag "${sample}"
     publishDir "${params.outfolder}/${params.runID}/hiphase", mode: 'copy', overwrite: true
@@ -21,7 +21,7 @@ process HIPHASE_PHASING {
         hiphase \
             --reference ${fasta} \
             --bam ${bam} \
-            --output_bam ${sample}_hiphase.bam \
+            --output-bam ${sample}_hiphase.bam \
             --vcf ${dv_vcf} \
             --output-vcf ${sample}_hiphase.dv.phased.vcf.gz \
             --vcf ${pbsv_vcf} \

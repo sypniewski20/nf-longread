@@ -1,0 +1,4 @@
+sampleID,bam,bai
+HG002,deployment/benchmark/bams/HG002_Revio_48x_GRCh38-GIABv3.ubam.bam,deployment/benchmark/bams/HG002_Revio_48x_GRCh38-GIABv3.ubam.bam.bai
+HG003,deployment/benchmark/bams/HG003_Revio_46x_GRCh38-GIABv3.ubam.bam,deployment/benchmark/bams/HG003_Revio_46x_GRCh38-GIABv3.ubam.bam.bai
+HG004,deployment/benchmark/bams/HG004_Revio_36x_GRCh38-GIABv3.ubam.bam,deployment/benchmark/bams/HG004_Revio_36x_GRCh38-GIABv3.ubam.bam.bai

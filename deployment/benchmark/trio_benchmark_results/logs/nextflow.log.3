@@ -1,0 +1,255 @@
+maj-25 12:46:46.263 [main] DEBUG nextflow.cli.Launcher - $> nextflow -log deployment/benchmark/trio_benchmark_results/logs/nextflow.log run main.nf --input_type ubam --run_mode DV,SV,PHASE,METHYLATION -profile singularity --singularity_path deployment/singularity/sif --samplesheet deployment/benchmark/benchmark_manifest_ubam.csv --outfolder deployment/benchmark/trio_benchmark_results --runID test_run -resume -w deployment/benchmark/trio_benchmark_results/work --seq_type PACBIO --fasta deployment/reference/fasta/Homo_sapiens_assembly38.fasta --annotate false
+maj-25 12:46:46.503 [main] DEBUG nextflow.cli.CmdRun - N E X T F L O W  ~  version 25.10.4
+maj-25 12:46:46.531 [main] DEBUG nextflow.plugin.PluginsFacade - Setting up plugin manager > mode=prod; embedded=false; plugins-dir=/home/mateuszsypniewski/.nextflow/plugins; core-plugins: nf-amazon@3.4.4,nf-azure@1.20.2,nf-cloudcache@0.5.0,nf-codecommit@0.5.0,nf-console@1.3.0,nf-google@1.23.5,nf-k8s@1.2.2,nf-tower@1.17.5,nf-wave@1.16.1
+maj-25 12:46:46.562 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Enabled plugins: []
+maj-25 12:46:46.563 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Disabled plugins: []
+maj-25 12:46:46.566 [main] INFO  org.pf4j.DefaultPluginManager - PF4J version 3.12.0 in 'deployment' mode
+maj-25 12:46:46.588 [main] DEBUG nextflow.util.RetryConfig - Missing nextflow session - using default retry config
+maj-25 12:46:46.743 [main] INFO  org.pf4j.AbstractPluginManager - No plugins
+maj-25 12:46:46.777 [main] DEBUG nextflow.config.ConfigBuilder - Found config local: /home/mateuszsypniewski/projects/nf-longread/nextflow.config
+maj-25 12:46:46.780 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /home/mateuszsypniewski/projects/nf-longread/nextflow.config
+maj-25 12:46:46.809 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `singularity`
+maj-25 12:46:47.636 [main] DEBUG nextflow.config.ConfigBuilder - Available config profiles: [singularity]
+maj-25 12:46:47.695 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins default=[]
+maj-25 12:46:47.696 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins resolved requirement=[]
+maj-25 12:46:47.715 [main] DEBUG n.secret.LocalSecretsProvider - Secrets store: /home/mateuszsypniewski/.nextflow/secrets/store.json
+maj-25 12:46:47.719 [main] DEBUG nextflow.secret.SecretsLoader - Discovered secrets providers: [nextflow.secret.LocalSecretsProvider@67536ae0] - activable => nextflow.secret.LocalSecretsProvider@67536ae0
+maj-25 12:46:47.721 [main] DEBUG nextflow.cli.CmdRun - Applied DSL=2 from script declaration
+maj-25 12:46:47.746 [main] DEBUG nextflow.cli.CmdRun - Launching `main.nf` [furious_celsius] DSL2 - revision: 08293f78ec
+maj-25 12:46:47.814 [main] DEBUG nextflow.Session - Session UUID: e2fa8c39-6405-491f-a7a1-f4fb0a5deb3f
+maj-25 12:46:47.815 [main] DEBUG nextflow.Session - Run name: furious_celsius
+maj-25 12:46:47.816 [main] DEBUG nextflow.Session - Executor pool size: 48
+maj-25 12:46:47.829 [main] DEBUG nextflow.file.FilePorter - File porter settings maxRetries=3; maxTransfers=50; pollTimeout=null
+maj-25 12:46:47.836 [main] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'FileTransfer' minSize=10; maxSize=144; workQueue=LinkedBlockingQueue[-1]; allowCoreThreadTimeout=false
+maj-25 12:46:47.862 [main] DEBUG nextflow.cli.CmdRun - 
+  Version: 25.10.4 build 11173
+  Created: 10-02-2026 15:17 UTC (16:17 CEST)
+  System: Linux 6.1.0-41-amd64
+  Runtime: Groovy 4.0.28 on OpenJDK 64-Bit Server VM 23.0.2-internal-adhoc.conda.src
+  Encoding: UTF-8 (UTF-8)
+  Process: 279293@debian [127.0.0.1]
+  CPUs: 48 - Mem: 354.3 GB (22.7 GB) - Swap: 976 MB (0)
+maj-25 12:46:48.009 [main] DEBUG nextflow.Session - Work-dir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work [ext2/ext3]
+maj-25 12:46:48.010 [main] DEBUG nextflow.Session - Script base path does not exist or is not a directory: /home/mateuszsypniewski/projects/nf-longread/bin
+maj-25 12:46:48.021 [main] DEBUG nextflow.executor.ExecutorFactory - Extension executors providers=[]
+maj-25 12:46:48.046 [main] DEBUG nextflow.Session - Observer factory (v2): LinObserverFactory
+maj-25 12:46:48.050 [main] DEBUG nextflow.Session - Observer factory (v2): DefaultObserverFactory
+maj-25 12:46:48.116 [main] DEBUG nextflow.cache.CacheFactory - Using Nextflow cache factory: nextflow.cache.DefaultCacheFactory
+maj-25 12:46:48.131 [main] DEBUG nextflow.util.CustomThreadPool - Creating default thread pool > poolSize: 49; maxThreads: 1000
+maj-25 12:46:48.258 [main] DEBUG nextflow.Session - Session start
+maj-25 12:46:48.268 [main] DEBUG nextflow.trace.TraceFileObserver - Workflow started -- trace file: deployment/benchmark/trio_benchmark_results/test_run/logs/execution_trace.txt
+maj-25 12:46:48.609 [main] DEBUG nextflow.script.ScriptRunner - > Launching execution
+maj-25 12:46:50.454 [main] DEBUG n.script.dsl.ProcessConfigBuilder - Config settings `withLabel:core` matches labels `core,xlarge` for process with name pbmm2_mapping_workflow:PBMM2_MAPPING
+maj-25 12:46:50.455 [main] DEBUG n.script.dsl.ProcessConfigBuilder - Config settings `withLabel:xlarge` matches labels `core,xlarge` for process with name pbmm2_mapping_workflow:PBMM2_MAPPING
+maj-25 12:46:50.458 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+maj-25 12:46:50.458 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+maj-25 12:46:50.471 [main] DEBUG nextflow.executor.Executor - [warm up] executor > local
+maj-25 12:46:50.480 [main] DEBUG n.processor.LocalPollingMonitor - Creating local task monitor for executor 'local' > cpus=48; memory=354.3 GB; capacity=48; pollInterval=100ms; dumpInterval=5m
+maj-25 12:46:50.482 [main] DEBUG n.processor.TaskPollingMonitor - >>> barrier register (monitor: local)
+maj-25 12:46:50.508 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'pbmm2_mapping_workflow:PBMM2_MAPPING': maxForks=0; fair=false; array=0
+maj-25 12:46:50.543 [main] DEBUG n.script.dsl.ProcessConfigBuilder - Config settings `withLabel:qc` matches labels `qc,medium` for process with name mosdepth_workflow:MOSDEPTH
+maj-25 12:46:50.544 [main] DEBUG n.script.dsl.ProcessConfigBuilder - Config settings `withLabel:medium` matches labels `qc,medium` for process with name mosdepth_workflow:MOSDEPTH
+maj-25 12:46:50.545 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+maj-25 12:46:50.546 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+maj-25 12:46:50.547 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'mosdepth_workflow:MOSDEPTH': maxForks=0; fair=false; array=0
+maj-25 12:46:50.572 [main] DEBUG n.script.dsl.ProcessConfigBuilder - Config settings `withLabel:qc` matches labels `qc,tiny` for process with name multiqc_workflow:MULTIQC
+maj-25 12:46:50.573 [main] DEBUG n.script.dsl.ProcessConfigBuilder - Config settings `withLabel:tiny` matches labels `qc,tiny` for process with name multiqc_workflow:MULTIQC
+maj-25 12:46:50.574 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+maj-25 12:46:50.574 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+maj-25 12:46:50.575 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'multiqc_workflow:MULTIQC': maxForks=0; fair=false; array=0
+maj-25 12:46:50.584 [main] DEBUG n.script.dsl.ProcessConfigBuilder - Config settings `withLabel:deepvariant` matches labels `deepvariant,xlarge` for process with name deepvariant_workflow:DEEP_VARIANT
+maj-25 12:46:50.585 [main] DEBUG n.script.dsl.ProcessConfigBuilder - Config settings `withLabel:xlarge` matches labels `deepvariant,xlarge` for process with name deepvariant_workflow:DEEP_VARIANT
+maj-25 12:46:50.587 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+maj-25 12:46:50.587 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+maj-25 12:46:50.588 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'deepvariant_workflow:DEEP_VARIANT': maxForks=0; fair=false; array=0
+maj-25 12:46:50.601 [main] DEBUG n.script.dsl.ProcessConfigBuilder - Config settings `withLabel:glnexus` matches labels `glnexus,large` for process with name deepvariant_workflow:GLNEXUS
+maj-25 12:46:50.602 [main] DEBUG n.script.dsl.ProcessConfigBuilder - Config settings `withLabel:large` matches labels `glnexus,large` for process with name deepvariant_workflow:GLNEXUS
+maj-25 12:46:50.602 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+maj-25 12:46:50.603 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+maj-25 12:46:50.604 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'deepvariant_workflow:GLNEXUS': maxForks=0; fair=false; array=0
+maj-25 12:46:50.608 [main] DEBUG n.script.dsl.ProcessConfigBuilder - Config settings `withLabel:core` matches labels `core,large` for process with name deepvariant_workflow:NORM_MULTISAMPLE
+maj-25 12:46:50.609 [main] DEBUG n.script.dsl.ProcessConfigBuilder - Config settings `withLabel:large` matches labels `core,large` for process with name deepvariant_workflow:NORM_MULTISAMPLE
+maj-25 12:46:50.610 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+maj-25 12:46:50.610 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+maj-25 12:46:50.612 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'deepvariant_workflow:NORM_MULTISAMPLE': maxForks=0; fair=false; array=0
+maj-25 12:46:50.618 [main] DEBUG n.script.dsl.ProcessConfigBuilder - Config settings `withLabel:core` matches labels `tiny,core` for process with name deepvariant_workflow:DV_EXTRACT_GT
+maj-25 12:46:50.619 [main] DEBUG n.script.dsl.ProcessConfigBuilder - Config settings `withLabel:tiny` matches labels `tiny,core` for process with name deepvariant_workflow:DV_EXTRACT_GT
+maj-25 12:46:50.621 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+maj-25 12:46:50.621 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+maj-25 12:46:50.622 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'deepvariant_workflow:DV_EXTRACT_GT': maxForks=0; fair=false; array=0
+maj-25 12:46:50.628 [main] DEBUG n.script.dsl.ProcessConfigBuilder - Config settings `withLabel:core` matches labels `core,large` for process with name sv_workflow:PBSV_DISCOVER
+maj-25 12:46:50.629 [main] DEBUG n.script.dsl.ProcessConfigBuilder - Config settings `withLabel:large` matches labels `core,large` for process with name sv_workflow:PBSV_DISCOVER
+maj-25 12:46:50.632 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+maj-25 12:46:50.632 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+maj-25 12:46:50.633 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'sv_workflow:PBSV_DISCOVER': maxForks=0; fair=false; array=0
+maj-25 12:46:50.637 [main] DEBUG n.script.dsl.ProcessConfigBuilder - Config settings `withLabel:core` matches labels `core,large` for process with name sv_workflow:PBSV_CALL
+maj-25 12:46:50.638 [main] DEBUG n.script.dsl.ProcessConfigBuilder - Config settings `withLabel:large` matches labels `core,large` for process with name sv_workflow:PBSV_CALL
+maj-25 12:46:50.640 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+maj-25 12:46:50.640 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+maj-25 12:46:50.641 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'sv_workflow:PBSV_CALL': maxForks=0; fair=false; array=0
+maj-25 12:46:50.645 [main] DEBUG n.script.dsl.ProcessConfigBuilder - Config settings `withLabel:core` matches labels `core,large` for process with name sv_workflow:SNIFFLES_SNF
+maj-25 12:46:50.647 [main] DEBUG n.script.dsl.ProcessConfigBuilder - Config settings `withLabel:large` matches labels `core,large` for process with name sv_workflow:SNIFFLES_SNF
+maj-25 12:46:50.648 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+maj-25 12:46:50.649 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+maj-25 12:46:50.649 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'sv_workflow:SNIFFLES_SNF': maxForks=0; fair=false; array=0
+maj-25 12:46:50.655 [main] DEBUG n.script.dsl.ProcessConfigBuilder - Config settings `withLabel:core` matches labels `core,large` for process with name sv_workflow:SNIFFLES_MULTISAMPLE
+maj-25 12:46:50.656 [main] DEBUG n.script.dsl.ProcessConfigBuilder - Config settings `withLabel:large` matches labels `core,large` for process with name sv_workflow:SNIFFLES_MULTISAMPLE
+maj-25 12:46:50.657 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+maj-25 12:46:50.657 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+maj-25 12:46:50.658 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'sv_workflow:SNIFFLES_MULTISAMPLE': maxForks=0; fair=false; array=0
+maj-25 12:46:50.667 [main] DEBUG n.script.dsl.ProcessConfigBuilder - Config settings `withLabel:core` matches labels `core,large` for process with name hiphase_workflow:HIPHASE_PHASING
+maj-25 12:46:50.667 [main] DEBUG n.script.dsl.ProcessConfigBuilder - Config settings `withLabel:large` matches labels `core,large` for process with name hiphase_workflow:HIPHASE_PHASING
+maj-25 12:46:50.670 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+maj-25 12:46:50.670 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+maj-25 12:46:50.671 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'hiphase_workflow:HIPHASE_PHASING': maxForks=0; fair=false; array=0
+maj-25 12:46:50.677 [main] DEBUG n.script.dsl.ProcessConfigBuilder - Config settings `withLabel:core` matches labels `core,medium` for process with name methylation_workflow:MINIMOD
+maj-25 12:46:50.678 [main] DEBUG n.script.dsl.ProcessConfigBuilder - Config settings `withLabel:medium` matches labels `core,medium` for process with name methylation_workflow:MINIMOD
+maj-25 12:46:50.679 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+maj-25 12:46:50.679 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+maj-25 12:46:50.680 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'methylation_workflow:MINIMOD': maxForks=0; fair=false; array=0
+maj-25 12:46:50.687 [main] DEBUG n.script.dsl.ProcessConfigBuilder - Config settings `withLabel:core` matches labels `core,medium` for process with name methylation_workflow:PB_CPG
+maj-25 12:46:50.687 [main] DEBUG n.script.dsl.ProcessConfigBuilder - Config settings `withLabel:medium` matches labels `core,medium` for process with name methylation_workflow:PB_CPG
+maj-25 12:46:50.688 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+maj-25 12:46:50.688 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+maj-25 12:46:50.689 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'methylation_workflow:PB_CPG': maxForks=0; fair=false; array=0
+maj-25 12:46:50.694 [main] DEBUG nextflow.Session - Workflow process names [dsl2]: FASTQC, methylation_workflow:MINIMOD, SPLICE_AI, deepvariant_workflow:DEEP_VARIANT, mosdepth_workflow:MOSDEPTH, multiqc_workflow:MULTIQC, MOSDEPTH_EXOME, MULTIQC, deepvariant_workflow:NORM_MULTISAMPLE, FASTP_PROCESSING, PBMM2_MAPPING, VEP_GERMLINE_SNV, MERGE_SVS, sv_workflow:PBSV_CALL, sv_workflow:SNIFFLES_MULTISAMPLE, FILTER_VEP, MINIMOD, MOSDEPTH, DV_EXTRACT_GT, HIPHASE_PHASING, deepvariant_workflow:GLNEXUS, pbmm2_mapping_workflow:PBMM2_MAPPING, hiphase_workflow:HIPHASE_PHASING, methylation_workflow:PB_CPG, DEEP_VARIANT, NORM_MULTISAMPLE, deepvariant_workflow:DV_EXTRACT_GT, GLNEXUS, SNIFFLES_SNF, SNIFFLES_MULTISAMPLE, FASTP_STREAM, sv_workflow:PBSV_DISCOVER, PBSV_DISCOVER, PBSV_CALL, PB_CPG, sv_workflow:SNIFFLES_SNF
+maj-25 12:46:50.699 [main] DEBUG nextflow.Session - Igniting dataflow network (21)
+maj-25 12:46:50.707 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > pbmm2_mapping_workflow:PBMM2_MAPPING
+maj-25 12:46:50.708 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > mosdepth_workflow:MOSDEPTH
+maj-25 12:46:50.709 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > multiqc_workflow:MULTIQC
+maj-25 12:46:50.709 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > deepvariant_workflow:DEEP_VARIANT
+maj-25 12:46:50.710 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > deepvariant_workflow:GLNEXUS
+maj-25 12:46:50.710 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > deepvariant_workflow:NORM_MULTISAMPLE
+maj-25 12:46:50.710 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > deepvariant_workflow:DV_EXTRACT_GT
+maj-25 12:46:50.711 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > sv_workflow:PBSV_DISCOVER
+maj-25 12:46:50.711 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > sv_workflow:PBSV_CALL
+maj-25 12:46:50.712 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > sv_workflow:SNIFFLES_SNF
+maj-25 12:46:50.712 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > sv_workflow:SNIFFLES_MULTISAMPLE
+maj-25 12:46:50.712 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > hiphase_workflow:HIPHASE_PHASING
+maj-25 12:46:50.713 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > methylation_workflow:MINIMOD
+maj-25 12:46:50.713 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > methylation_workflow:PB_CPG
+maj-25 12:46:50.714 [main] DEBUG nextflow.script.ScriptRunner - Parsed script files:
+  Script_f45632b66b3fa102: /home/mateuszsypniewski/projects/nf-longread/subworkflows/methylation.nf
+  Script_b80cab365d217d3c: /home/mateuszsypniewski/projects/nf-longread/subworkflows/hiphase.nf
+  Script_735c71aafe60bbae: /home/mateuszsypniewski/projects/nf-longread/subworkflows/sv.nf
+  Script_1c32cb866f9756d7: /home/mateuszsypniewski/projects/nf-longread/modules/annotations.nf
+  Script_160190c3d9e7c988: /home/mateuszsypniewski/projects/nf-longread/modules/pbsv.nf
+  Script_20ad49e057adf5d1: /home/mateuszsypniewski/projects/nf-longread/modules/deepvariant.nf
+  Script_21570df6b8013d6a: /home/mateuszsypniewski/projects/nf-longread/main.nf
+  Script_d004846aa6fe21f7: /home/mateuszsypniewski/projects/nf-longread/modules/methylation.nf
+  Script_89f84bf0e2a88e77: /home/mateuszsypniewski/projects/nf-longread/subworkflows/annotation.nf
+  Script_1b2c17274fb14166: /home/mateuszsypniewski/projects/nf-longread/subworkflows/deepvariant.nf
+  Script_eb88d2a61442e5c6: /home/mateuszsypniewski/projects/nf-longread/modules/sniffles.nf
+  Script_e3502b52a22bee69: /home/mateuszsypniewski/projects/nf-longread/modules/mapping.nf
+  Script_216b46ef4c077197: /home/mateuszsypniewski/projects/nf-longread/modules/survivor.nf
+  Script_fe8558acff877116: /home/mateuszsypniewski/projects/nf-longread/modules/functions.nf
+  Script_43b00e9ba4a8868b: /home/mateuszsypniewski/projects/nf-longread/modules/seqQC.nf
+  Script_bda6195c23069a3f: /home/mateuszsypniewski/projects/nf-longread/subworkflows/qc.nf
+  Script_43c1a4fa725a6f75: /home/mateuszsypniewski/projects/nf-longread/modules/hiphase.nf
+  Script_56a6f377befb4e7f: /home/mateuszsypniewski/projects/nf-longread/subworkflows/mapping.nf
+maj-25 12:46:50.714 [main] DEBUG nextflow.script.ScriptRunner - > Awaiting termination 
+maj-25 12:46:50.714 [main] DEBUG nextflow.Session - Session await
+maj-25 12:46:50.941 [Actor Thread 37] INFO  nextflow.processor.TaskProcessor - [cf/245e93] Cached process > pbmm2_mapping_workflow:PBMM2_MAPPING (HG003)
+maj-25 12:46:50.941 [Actor Thread 35] INFO  nextflow.processor.TaskProcessor - [e3/dee98f] Cached process > pbmm2_mapping_workflow:PBMM2_MAPPING (HG002)
+maj-25 12:46:50.942 [Actor Thread 39] INFO  nextflow.processor.TaskProcessor - [59/894a71] Cached process > pbmm2_mapping_workflow:PBMM2_MAPPING (HG004)
+maj-25 12:46:51.016 [Actor Thread 45] INFO  nextflow.processor.TaskProcessor - [8d/a5f0c1] Cached process > sv_workflow:PBSV_DISCOVER (HG002)
+maj-25 12:46:51.018 [Actor Thread 35] INFO  nextflow.processor.TaskProcessor - [06/30818c] Cached process > sv_workflow:SNIFFLES_SNF (HG004)
+maj-25 12:46:51.018 [Actor Thread 41] INFO  nextflow.processor.TaskProcessor - [98/c9bf44] Cached process > sv_workflow:SNIFFLES_SNF (HG002)
+maj-25 12:46:51.018 [Actor Thread 36] INFO  nextflow.processor.TaskProcessor - [26/995644] Cached process > sv_workflow:SNIFFLES_SNF (HG003)
+maj-25 12:46:51.047 [Actor Thread 31] INFO  nextflow.processor.TaskProcessor - [d6/fbfb72] Cached process > sv_workflow:PBSV_DISCOVER (HG004)
+maj-25 12:46:51.047 [Actor Thread 44] INFO  nextflow.processor.TaskProcessor - [c9/2a3756] Cached process > sv_workflow:PBSV_DISCOVER (HG003)
+maj-25 12:46:51.055 [Actor Thread 49] INFO  nextflow.processor.TaskProcessor - [49/33c8f2] Cached process > mosdepth_workflow:MOSDEPTH (HG002)
+maj-25 12:46:51.055 [Actor Thread 32] INFO  nextflow.processor.TaskProcessor - [69/0d22a9] Cached process > mosdepth_workflow:MOSDEPTH (HG004)
+maj-25 12:46:51.059 [Actor Thread 40] INFO  nextflow.processor.TaskProcessor - [ef/0dd6b6] Cached process > mosdepth_workflow:MOSDEPTH (HG003)
+maj-25 12:46:51.063 [Actor Thread 39] INFO  nextflow.processor.TaskProcessor - [10/801b4e] Cached process > deepvariant_workflow:DEEP_VARIANT (HG004)
+maj-25 12:46:51.064 [Actor Thread 38] INFO  nextflow.processor.TaskProcessor - [50/23b86a] Cached process > deepvariant_workflow:DEEP_VARIANT (HG003)
+maj-25 12:46:51.071 [Actor Thread 18] INFO  nextflow.processor.TaskProcessor - [f3/4997f3] Cached process > deepvariant_workflow:DEEP_VARIANT (HG002)
+maj-25 12:46:51.072 [Actor Thread 44] INFO  nextflow.processor.TaskProcessor - [6a/f6cc5b] Cached process > sv_workflow:PBSV_CALL (HG003)
+maj-25 12:46:51.079 [Actor Thread 41] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'PublishDir' minSize=10; maxSize=144; workQueue=LinkedBlockingQueue[-1]; allowCoreThreadTimeout=false
+maj-25 12:46:51.103 [Actor Thread 34] INFO  nextflow.processor.TaskProcessor - [c9/f00b0c] Cached process > sv_workflow:SNIFFLES_MULTISAMPLE
+maj-25 12:46:51.113 [Actor Thread 39] INFO  nextflow.processor.TaskProcessor - [55/ca475a] Cached process > deepvariant_workflow:GLNEXUS
+maj-25 12:46:51.130 [Actor Thread 37] INFO  nextflow.processor.TaskProcessor - [8a/c9241a] Cached process > multiqc_workflow:MULTIQC
+maj-25 12:46:51.136 [Actor Thread 31] INFO  nextflow.processor.TaskProcessor - [c9/dbc64c] Cached process > deepvariant_workflow:NORM_MULTISAMPLE
+maj-25 12:46:51.158 [Actor Thread 39] INFO  nextflow.processor.TaskProcessor - [6b/0a0a02] Cached process > deepvariant_workflow:DV_EXTRACT_GT
+maj-25 12:46:51.179 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+maj-25 12:46:51.197 [Task submitter] INFO  nextflow.Session - [7b/262afe] Submitted process > sv_workflow:PBSV_CALL (HG004)
+maj-25 12:46:51.219 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+maj-25 12:46:51.220 [Task submitter] INFO  nextflow.Session - [65/87734c] Submitted process > sv_workflow:PBSV_CALL (HG002)
+maj-25 12:46:51.237 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+maj-25 12:46:51.238 [Task submitter] INFO  nextflow.Session - [b0/8a0a50] Submitted process > hiphase_workflow:HIPHASE_PHASING (HG002)
+maj-25 12:46:51.775 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 19; name: hiphase_workflow:HIPHASE_PHASING (HG002); status: COMPLETED; exit: 2; error: -; workDir: /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/b0/8a0a50fdae1c9a27ea7de062d756f5]
+maj-25 12:46:51.777 [Task monitor] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'TaskFinalizer' minSize=10; maxSize=144; workQueue=LinkedBlockingQueue[-1]; allowCoreThreadTimeout=false
+maj-25 12:46:51.791 [TaskFinalizer-1] DEBUG nextflow.processor.TaskProcessor - Handling unexpected condition for
+  task: name=hiphase_workflow:HIPHASE_PHASING (HG002); work-dir=/home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/b0/8a0a50fdae1c9a27ea7de062d756f5
+  error [nextflow.exception.ProcessFailedException]: Process `hiphase_workflow:HIPHASE_PHASING (HG002)` terminated with an error exit status (2)
+maj-25 12:46:51.822 [TaskFinalizer-1] ERROR nextflow.processor.TaskProcessor - Error executing process > 'hiphase_workflow:HIPHASE_PHASING (HG002)'
+
+Caused by:
+  Process `hiphase_workflow:HIPHASE_PHASING (HG002)` terminated with an error exit status (2)
+
+
+Command executed:
+
+  hiphase             --reference Homo_sapiens_assembly38.fasta             --bam HG003_sorted.bam             --output_bam HG002_hiphase.bam             --vcf HG004_dv.vcf.gz             --output-vcf HG002_hiphase.dv.phased.vcf.gz             --vcf HG003.pbsv.vcf.gz             --output-vcf HG002_hiphase.pbsv.phased.vcf.gz             --vcf HG002.sniffles.vcf.gz             --output-vcf HG002_hiphase.sniffles.phased.vcf.gz             --threads 8
+
+Command exit status:
+  2
+
+Command output:
+  (empty)
+
+Command error:
+  error: Found argument '--output_bam' which wasn't expected, or isn't valid in this context
+  
+    Did you mean '--output-bam'?
+  
+    If you tried to supply '--output_bam' as a value rather than a flag, use '-- --output_bam'
+  
+  Usage: hiphase <--bam <BAM>|--output-bam <BAM>|--vcf <VCF>|--output-vcf <VCF>|--reference <FASTA>|--sample-name <SAMPLE>|--ignore-read-groups|--summary-file <FILE>|--stats-file <FILE>|--blocks-file <FILE>|--haplotag-file <FILE>|--io-threads <THREADS>|--csi-index|--preset <PRESET>|--threads <THREADS>|--verbose...|--min-vcf-qual <GQ>|--min-mapq <MAPQ>|--min-matched-alleles <COUNT>|--min-spanning-reads <READS>|--no-supplemental-joins|--phase-singletons|--use-linear-block-algorithm|--min-connecting-reads <READS>|--max-reference-buffer <LENGTH>|--global-realignment-cputime <SECONDS>|--disable-global-realignment|--global-realignment-max-ed <DISTANCE>|--global-pruning-distance <LENGTH>|--max-global-failure-ratio <FRAC>|--global-failure-count <COUNT>|--optimize-variant-order|--phase-min-queue-size <SIZE>|--phase-queue-increment <SIZE>|--skip <SKIP_BLOCKS>|--take <TAKE_BLOCKS>>
+  
+  For more information try '--help'
+
+Work dir:
+  /home/mateuszsypniewski/projects/nf-longread/deployment/benchmark/trio_benchmark_results/work/b0/8a0a50fdae1c9a27ea7de062d756f5
+
+Container:
+  /home/mateuszsypniewski/projects/nf-longread/./deployment/singularity/sif/core.sif
+
+Tip: when you have fixed the problem you can continue the execution adding the option `-resume` to the run command line
+maj-25 12:46:51.836 [TaskFinalizer-1] DEBUG nextflow.Session - Session aborted -- Cause: Process `hiphase_workflow:HIPHASE_PHASING (HG002)` terminated with an error exit status (2)
+maj-25 12:46:51.852 [TaskFinalizer-1] DEBUG nextflow.Session - The following nodes are still active:
+[process] hiphase_workflow:HIPHASE_PHASING
+  status=ACTIVE
+  port 0: (queue) OPEN  ; channel: -
+  port 1: (queue) OPEN  ; channel: -
+  port 2: (queue) OPEN  ; channel: -
+  port 3: (queue) OPEN  ; channel: -
+  port 4: (value) bound ; channel: -
+  port 5: (cntrl) -     ; channel: $
+
+[process] methylation_workflow:MINIMOD
+  status=ACTIVE
+  port 0: (queue) OPEN  ; channel: -
+  port 1: (value) bound ; channel: -
+  port 2: (cntrl) -     ; channel: $
+
+[process] methylation_workflow:PB_CPG
+  status=ACTIVE
+  port 0: (queue) OPEN  ; channel: -
+  port 1: (value) bound ; channel: -
+  port 2: (cntrl) -     ; channel: $
+
+maj-25 12:46:51.858 [TaskFinalizer-1] WARN  n.processor.TaskPollingMonitor - Killing running tasks (2)
+maj-25 12:46:51.896 [TaskFinalizer-1] DEBUG n.trace.WorkflowStatsObserver - Workflow completed > WorkflowStats[succeededCount=0; failedCount=1; ignoredCount=0; cachedCount=21; pendingCount=0; submittedCount=0; runningCount=0; retriesCount=0; abortedCount=2; succeedDuration=0ms; failedDuration=3.7s; cachedDuration=11d 20h 52m 38s;loadCpus=0; loadMemory=0; peakRunning=3; peakCpus=24; peakMemory=96 GB; ]
+maj-25 12:46:51.926 [Task monitor] DEBUG n.processor.TaskPollingMonitor - <<< barrier arrives (monitor: local) - terminating tasks monitor poll loop
+maj-25 12:46:52.091 [TaskFinalizer-1] DEBUG nextflow.trace.ReportObserver - Workflow completed -- rendering execution report
+maj-25 12:46:52.884 [TaskFinalizer-1] DEBUG nextflow.trace.TimelineObserver - Workflow completed -- rendering execution timeline
+maj-25 12:46:53.097 [TaskFinalizer-1] DEBUG nextflow.trace.TraceFileObserver - Workflow completed -- saving trace file
+maj-25 12:46:53.106 [main] DEBUG nextflow.Session - Session await > all processes finished
+maj-25 12:46:53.106 [main] DEBUG nextflow.Session - Session await > all barriers passed
+maj-25 12:46:53.111 [main] DEBUG n.trace.WorkflowStatsObserver - Workflow completed > WorkflowStats[succeededCount=0; failedCount=1; ignoredCount=0; cachedCount=21; pendingCount=0; submittedCount=0; runningCount=0; retriesCount=0; abortedCount=2; succeedDuration=0ms; failedDuration=3.7s; cachedDuration=11d 20h 52m 38s;loadCpus=0; loadMemory=0; peakRunning=3; peakCpus=24; peakMemory=96 GB; ]
+maj-25 12:46:53.133 [main] DEBUG nextflow.trace.ReportObserver - Workflow completed -- rendering execution report
+maj-25 12:46:53.836 [main] DEBUG nextflow.trace.TimelineObserver - Workflow completed -- rendering execution timeline
+maj-25 12:46:53.903 [main] DEBUG nextflow.trace.TraceFileObserver - Workflow completed -- saving trace file
+maj-25 12:46:53.917 [main] DEBUG nextflow.cache.CacheDB - Closing CacheDB done
+maj-25 12:46:53.951 [main] DEBUG nextflow.script.ScriptRunner - > Execution complete -- Goodbye

@@ -3,9 +3,8 @@ process PBMM2_MAPPING {
     label 'core'
     label 'xlarge'
     input:
-        // tuple contains: sample name, Library ID (LB), Platform (PL), and FASTQ paths
         tuple val(sample), path(ubam), path(bai)
-        tuple path(fasta_dir), path(fasta), path(fasta_fai), path(fasta_mmi)
+        tuple path(fasta), path(fasta_fai), path(fasta_mmi)
 
     output:
         tuple val(sample), path("${sample}_sorted.bam"), path("${sample}_sorted.bam.bai")
@@ -15,11 +14,14 @@ process PBMM2_MAPPING {
         #!/bin/bash
         set -eo pipefail
         
-        pbmm2 align ${fasta} \
-                    ${ubam} \
-                    --sort -j ${task.cpus} \
+        pbmm2 align --sort \
+                    -j ${task.cpus} \
                     -J ${task.cpus} \
-                    -o ${sample}_sorted.bam
+                    ${fasta} \
+                    ${ubam} \
+                    ${sample}_sorted.bam
+
+        samtools quickcheck ${sample}_sorted.bam
 
         """
 }

@@ -15,14 +15,17 @@ FASTA_MANIFEST := ${DEPLOYMENT_DIR}/manifests/fasta_manifest.csv
 # ── Images ────────────────────────────────────────────────────────────────────
 
 CORE_SIF  := ${DEPLOYMENT_DIR}/singularity/sif/core.sif
+QC_SIF    := ${DEPLOYMENT_DIR}/singularity/sif/qc.sif
 HAPPY_SIF := ${DEPLOYMENT_DIR}/singularity/sif/happi.sif
 VEP_SIF := ${DEPLOYMENT_DIR}/singularity/sif/vep115.sif
 SPLICEAI_SIF := ${DEPLOYMENT_DIR}/singularity/sif/spliceai.sif
-DEEP_VARIANT_SIF := ${DEPLOYMENT_DIR}/singularity/sif/deepvariant.sif
+DEEPVARIANT_SIF := ${DEPLOYMENT_DIR}/singularity/sif/deepvariant.sif
+DEEPVARIANT_GPU_SIF := ${DEPLOYMENT_DIR}/singularity/sif/deepvariant_gpu.sif
 GLNEXUS_SIF := ${DEPLOYMENT_DIR}/singularity/sif/glnexus.sif
 
 HAPPY_DOCKER := docker://mgibio/hap.py:v0.3.12
-DEEP_VARIANT_DOCKER := docker://google/deepvariant:1.5.0
+DEEPVARIANT_DOCKER := docker://google/deepvariant:1.5.0
+DEEPVARIANT_GPU_DOCKER := docker://google/deepvariant:1.5.0-gpu
 
 # ── Fasta ───────────────────────────────────────────────────────
 
@@ -38,7 +41,7 @@ setup: containers fasta
 benchmark: benchmark_download run_benchmark
 
 # ── Containers ────────────────────────────────────────────────────────────────
-containers: $(CORE_SIF) $(QC_SIF) $(HAPPY_SIF) $(DEEP_VARIANT_SIF) $(GLNEXUS_SIF) $(VEP_SIF)
+containers: $(CORE_SIF) $(QC_SIF) $(HAPPY_SIF) $(DEEPVARIANT_SIF) $(DEEPVARIANT_GPU_SIF) $(GLNEXUS_SIF) $(VEP_SIF)
 
 $(CORE_SIF):
 	$(SINGULARITY) build --fakeroot $@ ${DEPLOYMENT_DIR}/singularity/def/core.def
@@ -55,8 +58,11 @@ $(VEP_SIF):
 $(SPLICEAI_SIF):
 	$(SINGULARITY) build --fakeroot $@ ${DEPLOYMENT_DIR}/singularity/def/spliceai.def
 
-$(DEEP_VARIANT_SIF):
-	$(SINGULARITY) build --disable-cache $@ $(DEEP_VARIANT_DOCKER)
+$(DEEPVARIANT_SIF):
+	$(SINGULARITY) build --disable-cache $@ $(DEEPVARIANT_DOCKER)
+
+$(DEEPVARIANT_GPU_SIF):
+	$(SINGULARITY) build --disable-cache $@ $(DEEPVARIANT_GPU_DOCKER)
 
 $(GLNEXUS_SIF):
 	$(SINGULARITY) build --fakeroot $@ ${DEPLOYMENT_DIR}/singularity/def/glnexus.def
@@ -74,19 +80,19 @@ fasta:
 
 	# Build pbmm2 index
 	$(SINGULARITY) run $(CORE_SIF) \
-		pbmm2 index $(FASTA_DIR)/Homo_sapiens_assembly38.fasta $(FASTA_DIR)/Homo_sapiens_assembly38.mmi
+		pbmm2 index $(FASTA_DIR)/Homo_sapiens_assembly38.fasta $(FASTA_DIR)/Homo_sapiens_assembly38.fasta.mmi
 
 benchmark_download:
-	bash ${DEPLOYMENT_DIR}/scripts/GiAB_download.sh $(BENCHMARK_DIR)
+	$(SINGULARITY) run $(CORE_SIF) bash ${DEPLOYMENT_DIR}/scripts/GiAB_download.sh $(BENCHMARK_DIR)
 
 run_benchmark:
 	mkdir -p "${DEPLOYMENT_DIR}/benchmark/trio_benchmark_results/logs"
 	nextflow -log "${DEPLOYMENT_DIR}/benchmark/trio_benchmark_results/logs/nextflow.log" run main.nf \
-		--input_type bam \
-		--run_mode DV,SV \
+		--input_type ubam \
+		--run_mode DV,SV,PHASE,METHYLATION \
 		-profile singularity \
 		--singularity_path ${DEPLOYMENT_DIR}/singularity/sif \
-		--samplesheet ${DEPLOYMENT_DIR}/benchmark/benchmark_manifest.csv \
+		--samplesheet ${DEPLOYMENT_DIR}/benchmark/benchmark_manifest_ubam.csv \
 		--outfolder ${DEPLOYMENT_DIR}/benchmark/trio_benchmark_results \
 		--runID test_run \
 		-resume \
@@ -96,7 +102,7 @@ run_benchmark:
 		--annotate false
 
 validate:
-	bash ${DEPLOYMENT_DIR}/scripts/validate.sh ${DEPLOYMENT_DIR}
+	bash ${DEPLOYMENT_DIR}/scripts/validate.sh ${DEPLOYMENT_DIR} chr21
 
 # ── Clean ─────────────────────────────────────────────────────────────────────
 clean:

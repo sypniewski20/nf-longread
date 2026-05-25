@@ -3,7 +3,7 @@ include {
 } from '../modules/methylation.nf'
 
 
-workflow METHYLATION_WORKFLOW {
+workflow methylation_workflow {
 
     take:
         ch_bam

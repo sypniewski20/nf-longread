@@ -23,7 +23,8 @@ workflow hiphase_workflow {
         )
 
     emit:
-        hiphase_vcf = HIPHASE_PHASING.out.hiphase_vcf
-        pbsv_hiphase_vcf = HIPHASE_PHASING.out.pbsv_hiphase_vcf
-        sniffles_hiphase_vcf = HIPHASE_PHASING.out.sniffles_hiphase_vcf
+        ch_hiphase_bam = HIPHASE_PHASING.out.hiphase_bam
+        ch_hiphase_vcf = HIPHASE_PHASING.out.hiphase_vcf
+        ch_pbsv_hiphase_vcf = HIPHASE_PHASING.out.pbsv_hiphase_vcf
+        ch_sniffles_hiphase_vcf = HIPHASE_PHASING.out.sniffles_hiphase_vcf
 }

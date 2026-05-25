@@ -29,9 +29,9 @@ workflow deepvariant_workflow {
 
         NORM_MULTISAMPLE(GLNEXUS.out, ch_fasta)
 
-        DV_EXTRACT_GT(NORM_MULTISAMPLE.out.vcf, NORM_MULTISAMPLE.out.tbi)
+        DV_EXTRACT_GT(NORM_MULTISAMPLE.out)
 
     emit:
-        ch_vcf = NORM_MULTISAMPLE.out.vcf
-        ch_tbi = NORM_MULTISAMPLE.out.tbi
+        ch_vcf = DEEP_VARIANT.out.vcf
+        ch_vcf_multisample = NORM_MULTISAMPLE.out
 }

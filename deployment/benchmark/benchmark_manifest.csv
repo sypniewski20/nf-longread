@@ -1,4 +1,0 @@
-sampleID,bam,bai
-HG002,deployment/benchmark/bams/HG002.SequelII.merged_15kb_20kb.GRCh38.duplomap.bam,HG002.SequelII.merged_15kb_20kb.GRCh38.duplomap.bam.bai
-HG003,deployment/benchmark/bams/HG003.SequelII.merged_15kb_20kb.GRCh38.duplomap.bam,HG003.SequelII.merged_15kb_20kb.GRCh38.duplomap.bam.bai
-HG004,deployment/benchmark/bams/HG004.SequelII.merged_15kb_20kb.GRCh38.duplomap.bam,HG004.SequelII.merged_15kb_20kb.GRCh38.duplomap.bam.bai

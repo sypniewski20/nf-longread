@@ -6,7 +6,7 @@ nextflow.enable.dsl = 2
 // CLINICAL IVD GERMLINE PIPELINE
 // ============================================================
 
-include { readSamplesheet; readBam }      from './modules/functions.nf'
+include { readBam }      from './modules/functions.nf'
 include { pbmm2_mapping_workflow }      from './subworkflows/mapping.nf' 
 include { fastq_QC_workflow; mosdepth_workflow; multiqc_workflow }     from './subworkflows/qc.nf'
 include { deepvariant_workflow } from './subworkflows/deepvariant.nf'
@@ -22,12 +22,11 @@ workflow {
 // 1. INPUT LAYER
 
     if (params.input_type == 'ubam') {
-        
 
             // --- STANDARD LOCAL FASTQ MODE ---
         ch_ubam = readBam(params.samplesheet)
 
-        mapping_results = pbmm2_mapping_workflow(ch_ubam, params.fasta)
+        mapping_results = pbmm2_mapping_workflow(ch_ubam)
 
         // --- COMMON POST-MAPPING LAYER ---
         mosdepth_results = mosdepth_workflow(mapping_results.ch_bam)
@@ -52,7 +51,7 @@ workflow {
         multiqc_workflow(ch_mosdepth)
     }
 
-    if (DV in run_modes) {
+    if ('DV' in run_modes) {
 
         dv_results = deepvariant_workflow(ch_bam)
         if (params.annotate == true) {
@@ -66,16 +65,17 @@ workflow {
 
     if ('PHASE' in run_modes) {
         hiphase_workflow(ch_bam, 
-            deepvariant_workflow.out.vcf, 
+            deepvariant_workflow.out.ch_vcf, 
             sv_workflow.out.ch_pbsv_vcf, 
             sv_workflow.out.ch_sniffles_vcf
             )
     }
 
-    ch_bam = hiphase_workflow.out.ch_hiphase_bam ?: ch_bam
-
     if ('METHYLATION' in run_modes) {
-        methylation_workflow(ch_bam, params.fasta)
+
+        ch_bam_input = hiphase_workflow.out.ch_hiphase_bam ?: ch_bam
+
+        methylation_workflow(ch_bam_input, params.fasta)
     }
 
 }
