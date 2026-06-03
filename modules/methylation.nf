@@ -7,12 +7,12 @@ process MINIMOD {
         tuple val(sample), path(bam), path(bai)
         tuple path(fasta), path(fai)
     output:
-        tuple val(sample), path("${sample}_minimod.tsv"), emit: minimod
+        tuple val(sample), path("${sample}_minimod.tsv.gz"), emit: minimod
     script:
         """
         minimod view \
             ${fasta} \
-            ${bam} > ${sample}_minimod.tsv
+            ${bam} | bgzip -c > ${sample}_minimod.tsv.gz
         """ 
 }
 

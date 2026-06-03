@@ -84,6 +84,15 @@ fasta:
 
 benchmark_download:
 	$(SINGULARITY) run $(CORE_SIF) bash ${DEPLOYMENT_DIR}/scripts/GiAB_download.sh $(BENCHMARK_DIR)
+	
+	# Download chr21 reference and build mmi index
+	$(SINGULARITY) run $(CORE_SIF) \
+		samtools faidx $(FASTA_URL) chr21 > $(FASTA_DIR)/chr21_Homo_sapiens_assembly38.fasta
+	$(SINGULARITY) run $(CORE_SIF) \
+		samtools faidx $(FASTA_DIR)/chr21_Homo_sapiens_assembly38.fasta
+    
+	$(SINGULARITY) run $(CORE_SIF) \
+		pbmm2 index $(FASTA_DIR)/chr21_Homo_sapiens_assembly38.fasta $(FASTA_DIR)/chr21_Homo_sapiens_assembly38.fasta.mmi
 
 run_benchmark:
 	mkdir -p "${DEPLOYMENT_DIR}/benchmark/trio_benchmark_results/logs"
@@ -98,7 +107,7 @@ run_benchmark:
 		-resume \
 		-w ${DEPLOYMENT_DIR}/benchmark/trio_benchmark_results/work \
 		--seq_type PACBIO \
-		--fasta ${DEPLOYMENT_DIR}/reference/fasta/Homo_sapiens_assembly38.fasta \
+		--fasta $(FASTA_DIR)/chr21_Homo_sapiens_assembly38.fasta \
 		--annotate false
 
 validate:
@@ -106,4 +115,4 @@ validate:
 
 # ── Clean ─────────────────────────────────────────────────────────────────────
 clean:
-	rm -rf ${DEPLOYMENT_DIR}/benchmark/trio_benchmark_results reference logs singularity/*.sif
+	rm -rf ${DEPLOYMENT_DIR}/benchmark/trio_benchmark_results ${DEPLOYMENT_DIR}/benchmark/bams ${DEPLOYMENT_DIR}/reference logs ${DEPLOYMENT_DIR}/singularity/sif/*.sif

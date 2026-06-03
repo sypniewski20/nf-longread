@@ -13,8 +13,12 @@ process SNIFFLES_SNF {
         """
 
         sniffles --input ${bam} \
-        --vcf ${sample}.sniffles.vcf.gz \
-        --snf ${sample}.sniffles.snf
+        --vcf ${sample}.sniffles.vcf \
+        --snf ${sample}.sniffles.snf \
+        --sample-id ${sample}
+
+        bgzip ${sample}.sniffles.vcf
+        tabix -p vcf ${sample}.sniffles.vcf.gz
 
         """
 }

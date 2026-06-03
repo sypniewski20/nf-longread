@@ -54,6 +54,12 @@ workflow {
     if ('DV' in run_modes) {
 
         dv_results = deepvariant_workflow(ch_bam)
+
+        phase_input = ch_bam
+            .join(dv_results.ch_vcf, by: 0, failOnMismatch: true)
+
+        hiphase_workflow(phase_input)
+
         if (params.annotate == true) {
             annotation_workflow(dv_results.ch_vcf, dv_results.ch_tbi)
         }
@@ -63,19 +69,12 @@ workflow {
         sv_workflow(ch_bam)
     }
 
-    if ('PHASE' in run_modes) {
-        hiphase_workflow(ch_bam, 
-            deepvariant_workflow.out.ch_vcf, 
-            sv_workflow.out.ch_pbsv_vcf, 
-            sv_workflow.out.ch_sniffles_vcf
-            )
-    }
 
     if ('METHYLATION' in run_modes) {
 
         ch_bam_input = hiphase_workflow.out.ch_hiphase_bam ?: ch_bam
 
-        methylation_workflow(ch_bam_input, params.fasta)
+        methylation_workflow(ch_bam_input)
     }
 
 }

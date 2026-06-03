@@ -82,4 +82,3 @@ samtools index ${input}/bams/HG004_Revio_36x_GRCh38-GIABv3.ubam.bam
 rm *_PacBio-HiFi-Revio_20231031_*x_GRCh38-GIABv3.bam.bai
 
 echo "Success. Mini-trio extracted to: ${input}/truth_vcfs and ${input}/bams"
-

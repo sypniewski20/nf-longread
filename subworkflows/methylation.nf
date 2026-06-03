@@ -7,12 +7,15 @@ workflow methylation_workflow {
 
     take:
         ch_bam
-        ch_fasta
 
      main:
 
+    ch_fasta = Channel.value([
+        file(params.fasta),
+        file("${params.fasta}.fai")
+    ])
 
-    minimod_results = MINIMOD(ch_bam, ch_fasta)
-    pb_cpg_results = PB_CPG(ch_bam, ch_fasta)
+    MINIMOD(ch_bam, ch_fasta)
+    PB_CPG(ch_bam, ch_fasta)
 
 } 
