@@ -11,3 +11,5 @@ deployment/benchmark/trio_benchmark_results/validation/*gz
 deployment/benchmark/trio_benchmark_results/validation/*gz.tbi
 deployment/benchmark/trio_benchmark_results/logs
 .Rproj.user
+.Rhistory
+.RData
