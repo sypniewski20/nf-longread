@@ -4,7 +4,7 @@ subtitle: "Ashkenazim Trio (HG002/HG003/HG004) — chr22 Benchmark"
 author: "Mateusz Sypniewski"
 date: today
 format:
-  html:
+  markdown:
     toc: true
     toc-depth: 3
     code-fold: true
