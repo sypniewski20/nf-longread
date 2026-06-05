@@ -1,30 +1,17 @@
----
-author:
-- Mateusz Sypniewski
-authors:
-- Mateusz Sypniewski
-date: 2026-06-05
-execute:
-  message: false
-  warning: false
-subtitle: Ashkenazim Trio (HG002/HG003/HG004) --- chr22 Benchmark
-theme: flatly
-title: PacBio HiFi 5mCpG Methylation QC Report
-toc-title: Table of contents
----
+# PacBio HiFi 5mCpG Methylation QC Report
+Mateusz Sypniewski
+2026-06-05
 
--   [Overview](#overview){#toc-overview}
--   [Setup](#setup){#toc-setup}
--   [1. Data Loading](#data-loading){#toc-data-loading}
--   [2. Coverage QC](#coverage-qc){#toc-coverage-qc}
--   [3. Beta Value
-    Distribution](#beta-value-distribution){#toc-beta-value-distribution}
--   [4. CpG Genomic Context
-    Annotation](#cpg-genomic-context-annotation){#toc-cpg-genomic-context-annotation}
--   [5. Allele-Specific Methylation (ASM)
-    Landscape](#allele-specific-methylation-asm-landscape){#toc-allele-specific-methylation-asm-landscape}
--   [6. Trio Concordance](#trio-concordance){#toc-trio-concordance}
--   [7. Session Info](#session-info){#toc-session-info}
+- [Overview](#overview)
+- [Setup](#setup)
+- [1. Data Loading](#1-data-loading)
+- [2. Coverage QC](#2-coverage-qc)
+- [3. Beta Value Distribution](#3-beta-value-distribution)
+- [4. CpG Genomic Context Annotation](#4-cpg-genomic-context-annotation)
+- [5. Allele-Specific Methylation (ASM)
+  Landscape](#5-allele-specific-methylation-asm-landscape)
+- [6. Trio Concordance](#6-trio-concordance)
+- [7. Session Info](#7-session-info)
 
 ## Overview
 
@@ -44,11 +31,7 @@ model on phased HiFi BAMs (HiPhase). The report covers:
 
 ## Setup
 
-::: cell
-`<details class="code-fold">
-<summary>`{=html}Code`</summary>`{=html}
-
-``` {.r .cell-code}
+``` r
 library(tidyverse)
 library(data.table)
 library(annotatr)
@@ -63,18 +46,11 @@ CHR     <- "chr22"
 COV_MIN <- 5L
 ```
 
-</details>
-:::
-
 ------------------------------------------------------------------------
 
 ## 1. Data Loading
 
-:::: cell
-`<details class="code-fold">
-<summary>`{=html}Code`</summary>`{=html}
-
-``` {.r .cell-code}
+``` r
 # --- pb-CpG-tools BED files ---
 # Expected path: <PLACEHOLDER: adjust to your repo structure>
 BED_DIR <- "../deployment/benchmark/trio_benchmark_results/test_run/methylation/pb-cpg"
@@ -111,22 +87,13 @@ cat(sprintf(
 ))
 ```
 
-</details>
-
-::: {.cell-output .cell-output-stdout}
     Loaded 1,751,871 CpG sites across 3 samples (combined, cov >= 5)
-:::
-::::
 
 ------------------------------------------------------------------------
 
 ## 2. Coverage QC
 
-:::: cell
-`<details class="code-fold">
-<summary>`{=html}Code`</summary>`{=html}
-
-``` {.r .cell-code}
+``` r
 # --- Mosdepth summary (PLACEHOLDER) ---
 # Replace with:
 # mosdepth_summary <- fread("<PLACEHOLDER: path to mosdepth summary files>")
@@ -152,24 +119,15 @@ knitr::kable(
 )
 ```
 
-</details>
+| Sample | CpG sites | Mean cov | Median cov | % ≥10× | % ≥20× |
+|:-------|----------:|---------:|-----------:|-------:|-------:|
+| HG002  |    591712 |     34.0 |         32 |   98.7 |   93.0 |
+| HG003  |    590240 |     31.7 |         30 |   98.4 |   88.8 |
+| HG004  |    569919 |     22.9 |         21 |   94.1 |   60.0 |
 
-::: cell-output-display
-  Sample     CpG sites   Mean cov   Median cov   \% ≥10×   \% ≥20×
-  -------- ----------- ---------- ------------ --------- ---------
-  HG002         591712       34.0           32      98.7      93.0
-  HG003         590240       31.7           30      98.4      88.8
-  HG004         569919       22.9           21      94.1      60.0
+Table 1. Coverage summary per sample, chr22
 
-  : Table 1. Coverage summary per sample, chr22
-:::
-::::
-
-:::: cell
-`<details class="code-fold">
-<summary>`{=html}Code`</summary>`{=html}
-
-``` {.r .cell-code}
+``` r
 pcpg_combined %>%
   filter(cov_total <= 100) %>%
   ggplot(aes(x = cov_total, fill = sample)) +
@@ -184,12 +142,7 @@ pcpg_combined %>%
   theme(legend.position = "none")
 ```
 
-</details>
-
-::: cell-output-display
-![](Report_files/figure-markdown/coverage-dist-1.png)
-:::
-::::
+![](Report_files/figure-commonmark/coverage-dist-1.png)
 
 ------------------------------------------------------------------------
 
@@ -199,11 +152,7 @@ A bimodal distribution with peaks near 0 (hypomethylated) and 1
 (hypermethylated) is expected for a healthy human methylome, reflecting
 the binary nature of CpG methylation at most loci.
 
-:::: cell
-`<details class="code-fold">
-<summary>`{=html}Code`</summary>`{=html}
-
-``` {.r .cell-code}
+``` r
 pcpg_combined %>%
   ggplot(aes(x = beta, fill = sample, colour = sample)) +
   geom_density(alpha = 0.3, linewidth = 0.8) +
@@ -219,18 +168,9 @@ pcpg_combined %>%
   theme(legend.position = "none")
 ```
 
-</details>
+![](Report_files/figure-commonmark/beta-dist-1.png)
 
-::: cell-output-display
-![](Report_files/figure-markdown/beta-dist-1.png)
-:::
-::::
-
-:::: cell
-`<details class="code-fold">
-<summary>`{=html}Code`</summary>`{=html}
-
-``` {.r .cell-code}
+``` r
 pcpg_combined %>%
   mutate(
     methylation_class = case_when(
@@ -250,24 +190,19 @@ pcpg_combined %>%
   )
 ```
 
-</details>
+| Sample | Class                   | N sites | % sites |
+|:-------|:------------------------|--------:|--------:|
+| HG002  | Hypermethylated (\>80%) |  340250 |    57.5 |
+| HG002  | Hypomethylated (\<20%)  |   89234 |    15.1 |
+| HG002  | Intermediate (20-80%)   |  162228 |    27.4 |
+| HG003  | Hypermethylated (\>80%) |  278130 |    47.1 |
+| HG003  | Hypomethylated (\<20%)  |  108381 |    18.4 |
+| HG003  | Intermediate (20-80%)   |  203729 |    34.5 |
+| HG004  | Hypermethylated (\>80%) |  292330 |    51.3 |
+| HG004  | Hypomethylated (\<20%)  |   89220 |    15.7 |
+| HG004  | Intermediate (20-80%)   |  188369 |    33.1 |
 
-::: cell-output-display
-  Sample   Class                       N sites   \% sites
-  -------- ------------------------- --------- ----------
-  HG002    Hypermethylated (\>80%)      340250       57.5
-  HG002    Hypomethylated (\<20%)        89234       15.1
-  HG002    Intermediate (20-80%)        162228       27.4
-  HG003    Hypermethylated (\>80%)      278130       47.1
-  HG003    Hypomethylated (\<20%)       108381       18.4
-  HG003    Intermediate (20-80%)        203729       34.5
-  HG004    Hypermethylated (\>80%)      292330       51.3
-  HG004    Hypomethylated (\<20%)        89220       15.7
-  HG004    Intermediate (20-80%)        188369       33.1
-
-  : Table 2. CpG methylation class distribution per sample
-:::
-::::
+Table 2. CpG methylation class distribution per sample
 
 ------------------------------------------------------------------------
 
@@ -277,11 +212,7 @@ Methylation patterns differ systematically by genomic context: CpG
 islands are typically hypomethylated (active regulatory regions), while
 CpG shores and open-sea CpGs are predominantly hypermethylated.
 
-:::: cell
-`<details class="code-fold">
-<summary>`{=html}Code`</summary>`{=html}
-
-``` {.r .cell-code}
+``` r
 # Build annotatr annotation for hg38 chr22
 annots <- build_annotations(genome = "hg38",
                              annotations = c("hg38_cpg_islands",
@@ -332,18 +263,9 @@ annotated %>%
   theme(legend.position = "none")
 ```
 
-</details>
+![](Report_files/figure-commonmark/context-annotation-1.png)
 
-::: cell-output-display
-![](Report_files/figure-markdown/context-annotation-1.png)
-:::
-::::
-
-:::: cell
-`<details class="code-fold">
-<summary>`{=html}Code`</summary>`{=html}
-
-``` {.r .cell-code}
+``` r
 annotated %>%
   group_by(context) %>%
   summarise(
@@ -359,19 +281,14 @@ annotated %>%
   )
 ```
 
-</details>
+| context    | n_sites | mean_beta | median_beta |
+|:-----------|--------:|----------:|------------:|
+| CpG island |   59887 |     0.284 |       0.032 |
+| CpG shore  |   61007 |     0.671 |       0.870 |
+| Open sea   |  429558 |     0.758 |       0.905 |
+| CpG shelf  |   41260 |     0.773 |       0.920 |
 
-::: cell-output-display
-  context        n_sites   mean_beta   median_beta
-  ------------ --------- ----------- -------------
-  CpG island       59887       0.284         0.032
-  CpG shore        61007       0.671         0.870
-  Open sea        429558       0.758         0.905
-  CpG shelf        41260       0.773         0.920
-
-  : Table 3. Mean methylation by genomic context (HG002, chr22)
-:::
-::::
+Table 3. Mean methylation by genomic context (HG002, chr22)
 
 ------------------------------------------------------------------------
 
@@ -381,11 +298,7 @@ HiPhase haplotype-resolved calling allows direct comparison of
 methylation between the two parental haplotypes at each CpG site. Sites
 with large \|hap1 - hap2\| differences are candidate ASM loci.
 
-::: cell
-`<details class="code-fold">
-<summary>`{=html}Code`</summary>`{=html}
-
-``` {.r .cell-code}
+``` r
 asm <- pcpg_hap %>%
   select(sample, chrom, end, type, beta = mod_score, cov) %>%
   mutate(beta = beta / 100) %>%       # mod_score is 0-100, convert to 0-1
@@ -398,14 +311,7 @@ asm <- pcpg_hap %>%
   mutate(asm_delta = abs(beta_hap1 - beta_hap2))
 ```
 
-</details>
-:::
-
-:::: cell
-`<details class="code-fold">
-<summary>`{=html}Code`</summary>`{=html}
-
-``` {.r .cell-code}
+``` r
 asm %>%
   ggplot(aes(x = asm_delta, fill = sample, colour = sample)) +
   geom_density(alpha = 0.3, linewidth = 0.8) +
@@ -422,18 +328,9 @@ asm %>%
   theme(legend.position = "none")
 ```
 
-</details>
+![](Report_files/figure-commonmark/asm-dist-1.png)
 
-::: cell-output-display
-![](Report_files/figure-markdown/asm-dist-1.png)
-:::
-::::
-
-:::: cell
-`<details class="code-fold">
-<summary>`{=html}Code`</summary>`{=html}
-
-``` {.r .cell-code}
+``` r
 asm %>%
   group_by(sample) %>%
   summarise(
@@ -450,29 +347,15 @@ asm %>%
   )
 ```
 
-</details>
+| Sample | Total sites | % \|Δβ\|≥0.5 | % \|Δβ\|≥0.3 | Mean \|Δβ\| |
+|:-------|------------:|-------------:|-------------:|------------:|
+| HG002  |      575834 |         8.75 |        17.16 |        0.15 |
+| HG003  |      572275 |         8.46 |        20.39 |        0.16 |
+| HG004  |      511690 |         7.07 |        19.05 |        0.16 |
 
-::: cell-output-display
-  ---------------------------------------------------------------------------
-  Sample        Total      \% \|Δβ\|≥0.5      \% \|Δβ\|≥0.3       Mean \|Δβ\|
-                sites                                       
-  -------- ---------- ------------------ ------------------ -----------------
-  HG002        575834               8.75              17.16              0.15
+Table 4. ASM site counts per sample (chr22)
 
-  HG003        572275               8.46              20.39              0.16
-
-  HG004        511690               7.07              19.05              0.16
-  ---------------------------------------------------------------------------
-
-  : Table 4. ASM site counts per sample (chr22)
-:::
-::::
-
-:::: cell
-`<details class="code-fold">
-<summary>`{=html}Code`</summary>`{=html}
-
-``` {.r .cell-code}
+``` r
 # Top ASM candidate sites
 asm %>%
   filter(asm_delta >= 0.5, sample == "HG002") %>%
@@ -485,35 +368,30 @@ asm %>%
   )
 ```
 
-</details>
+| chrom |      end | beta_hap1 | beta_hap2 | asm_delta | cov_hap1 | cov_hap2 |
+|:------|---------:|----------:|----------:|----------:|---------:|---------:|
+| chr22 | 43834870 |     0.024 |     0.974 |     0.950 |       10 |       13 |
+| chr22 | 21688797 |     0.028 |     0.975 |     0.947 |       17 |        8 |
+| chr22 | 21688799 |     0.028 |     0.974 |     0.946 |       17 |        8 |
+| chr22 | 40940720 |     0.967 |     0.021 |     0.946 |        6 |        7 |
+| chr22 | 23566977 |     0.030 |     0.976 |     0.946 |        8 |        7 |
+| chr22 | 43834900 |     0.025 |     0.970 |     0.945 |       11 |       13 |
+| chr22 | 47149262 |     0.025 |     0.970 |     0.945 |       12 |       17 |
+| chr22 | 30921990 |     0.023 |     0.967 |     0.944 |       20 |       14 |
+| chr22 | 30922347 |     0.028 |     0.972 |     0.944 |       21 |       14 |
+| chr22 | 41682094 |     0.032 |     0.976 |     0.944 |       13 |       15 |
+| chr22 | 30922253 |     0.029 |     0.971 |     0.942 |       21 |       14 |
+| chr22 | 41682089 |     0.028 |     0.970 |     0.942 |       13 |       15 |
+| chr22 | 48580655 |     0.974 |     0.033 |     0.941 |       15 |       22 |
+| chr22 | 41682234 |     0.031 |     0.972 |     0.941 |       13 |       15 |
+| chr22 | 41682236 |     0.029 |     0.970 |     0.941 |       13 |       15 |
+| chr22 | 41681822 |     0.034 |     0.974 |     0.940 |       12 |       15 |
+| chr22 | 47149280 |     0.024 |     0.964 |     0.940 |       12 |       17 |
+| chr22 | 30922343 |     0.030 |     0.970 |     0.940 |       21 |       14 |
+| chr22 | 43834842 |     0.028 |     0.968 |     0.940 |        6 |       11 |
+| chr22 | 48580657 |     0.970 |     0.030 |     0.940 |       15 |       22 |
 
-::: cell-output-display
-  chrom          end   beta_hap1   beta_hap2   asm_delta   cov_hap1   cov_hap2
-  ------- ---------- ----------- ----------- ----------- ---------- ----------
-  chr22     43834870       0.024       0.974       0.950         10         13
-  chr22     21688797       0.028       0.975       0.947         17          8
-  chr22     21688799       0.028       0.974       0.946         17          8
-  chr22     40940720       0.967       0.021       0.946          6          7
-  chr22     23566977       0.030       0.976       0.946          8          7
-  chr22     43834900       0.025       0.970       0.945         11         13
-  chr22     47149262       0.025       0.970       0.945         12         17
-  chr22     30921990       0.023       0.967       0.944         20         14
-  chr22     30922347       0.028       0.972       0.944         21         14
-  chr22     41682094       0.032       0.976       0.944         13         15
-  chr22     30922253       0.029       0.971       0.942         21         14
-  chr22     41682089       0.028       0.970       0.942         13         15
-  chr22     48580655       0.974       0.033       0.941         15         22
-  chr22     41682234       0.031       0.972       0.941         13         15
-  chr22     41682236       0.029       0.970       0.941         13         15
-  chr22     41681822       0.034       0.974       0.940         12         15
-  chr22     47149280       0.024       0.964       0.940         12         17
-  chr22     30922343       0.030       0.970       0.940         21         14
-  chr22     43834842       0.028       0.968       0.940          6         11
-  chr22     48580657       0.970       0.030       0.940         15         22
-
-  : Table 5. Top 20 candidate ASM loci on chr22 (HG002, \|Δβ\| ≥ 0.5)
-:::
-::::
+Table 5. Top 20 candidate ASM loci on chr22 (HG002, \|Δβ\| ≥ 0.5)
 
 ------------------------------------------------------------------------
 
@@ -524,11 +402,7 @@ Ashkenazim Trio at constitutively methylated and unmethylated loci,
 confirming pipeline stability across samples sequenced in independent
 runs.
 
-::::: cell
-`<details class="code-fold">
-<summary>`{=html}Code`</summary>`{=html}
-
-``` {.r .cell-code}
+``` r
 # Wide format: one column per sample
 trio_wide <- pcpg_combined %>%
   select(chrom, end, sample, beta) %>%
@@ -539,16 +413,9 @@ cat(sprintf("Shared CpG sites across all three samples: %s\n",
             format(nrow(trio_wide), big.mark = ",")))
 ```
 
-</details>
-
-::: {.cell-output .cell-output-stdout}
     Shared CpG sites across all three samples: 543,311
-:::
 
-`<details class="code-fold">
-<summary>`{=html}Code`</summary>`{=html}
-
-``` {.r .cell-code}
+``` r
 # Pairwise correlations
 pairs <- list(
   c("HG002", "HG003"),
@@ -572,25 +439,15 @@ knitr::kable(
 )
 ```
 
-</details>
+| pair            | pearson | spearman |
+|:----------------|--------:|---------:|
+| HG002 vs. HG003 |  0.8084 |   0.7681 |
+| HG002 vs. HG004 |  0.8250 |   0.7539 |
+| HG003 vs. HG004 |  0.8253 |   0.7744 |
 
-::: cell-output-display
-  pair                pearson   spearman
-  ----------------- --------- ----------
-  HG002 vs. HG003      0.8084     0.7681
-  HG002 vs. HG004      0.8250     0.7539
-  HG003 vs. HG004      0.8253     0.7744
+Table 6. Pairwise methylation concordance across Ashkenazim Trio (chr22)
 
-  : Table 6. Pairwise methylation concordance across Ashkenazim Trio
-  (chr22)
-:::
-:::::
-
-:::: cell
-`<details class="code-fold">
-<summary>`{=html}Code`</summary>`{=html}
-
-``` {.r .cell-code}
+``` r
 p_02_03 <- trio_wide %>%
   ggplot(aes(x = HG002, y = HG003)) +
   geom_bin2d(bins = 40) + 
@@ -684,28 +541,16 @@ p_03_04 <- trio_wide %>%
   )
 ```
 
-</details>
-
-::: cell-output-display
-![](Report_files/figure-markdown/trio-scatter-1.png)
-:::
-::::
+![](Report_files/figure-commonmark/trio-scatter-1.png)
 
 ------------------------------------------------------------------------
 
 ## 7. Session Info
 
-:::: cell
-`<details class="code-fold">
-<summary>`{=html}Code`</summary>`{=html}
-
-``` {.r .cell-code}
+``` r
 sessionInfo()
 ```
 
-</details>
-
-::: {.cell-output .cell-output-stdout}
     R version 4.5.3 (2026-03-11)
     Platform: x86_64-pc-linux-gnu
     Running under: Debian GNU/Linux 12 (bookworm)
@@ -786,5 +631,3 @@ sessionInfo()
     [89] R.oo_1.27.1                 memoise_2.0.1              
     [91] htmltools_0.5.9             lifecycle_1.0.5            
     [93] httr_1.4.8                  bit64_4.8.2                
-:::
-::::
