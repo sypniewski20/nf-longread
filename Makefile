@@ -83,16 +83,16 @@ fasta:
 		pbmm2 index $(FASTA_DIR)/Homo_sapiens_assembly38.fasta $(FASTA_DIR)/Homo_sapiens_assembly38.fasta.mmi
 
 benchmark_download:
-	$(SINGULARITY) run $(CORE_SIF) bash ${DEPLOYMENT_DIR}/scripts/GiAB_download.sh $(BENCHMARK_DIR)
+	$(SINGULARITY) run $(CORE_SIF) bash ${DEPLOYMENT_DIR}/scripts/GiAB_download.sh $(BENCHMARK_DIR) chr22
 	
-	# Download chr21 reference and build mmi index
+	# Download chr22 reference and build mmi index
 	$(SINGULARITY) run $(CORE_SIF) \
-		samtools faidx $(FASTA_URL) chr21 > $(FASTA_DIR)/chr21_Homo_sapiens_assembly38.fasta
+		samtools faidx $(FASTA_URL) chr22 > $(FASTA_DIR)/chr22_Homo_sapiens_assembly38.fasta
 	$(SINGULARITY) run $(CORE_SIF) \
-		samtools faidx $(FASTA_DIR)/chr21_Homo_sapiens_assembly38.fasta
+		samtools faidx $(FASTA_DIR)/chr22_Homo_sapiens_assembly38.fasta
     
 	$(SINGULARITY) run $(CORE_SIF) \
-		pbmm2 index $(FASTA_DIR)/chr21_Homo_sapiens_assembly38.fasta $(FASTA_DIR)/chr21_Homo_sapiens_assembly38.fasta.mmi
+		pbmm2 index $(FASTA_DIR)/chr22_Homo_sapiens_assembly38.fasta $(FASTA_DIR)/chr22_Homo_sapiens_assembly38.fasta.mmi
 
 run_benchmark:
 	mkdir -p "${DEPLOYMENT_DIR}/benchmark/trio_benchmark_results/logs"
@@ -107,11 +107,11 @@ run_benchmark:
 		-resume \
 		-w ${DEPLOYMENT_DIR}/benchmark/trio_benchmark_results/work \
 		--seq_type PACBIO \
-		--fasta $(FASTA_DIR)/chr21_Homo_sapiens_assembly38.fasta \
+		--fasta $(FASTA_DIR)/chr22_Homo_sapiens_assembly38.fasta \
 		--annotate false
 
 validate:
-	bash ${DEPLOYMENT_DIR}/scripts/validate.sh ${DEPLOYMENT_DIR} chr21
+	bash ${DEPLOYMENT_DIR}/scripts/validate.sh ${DEPLOYMENT_DIR} chr22
 
 # ── Clean ─────────────────────────────────────────────────────────────────────
 clean:

@@ -1,5 +1,5 @@
 include {
-    MINIMOD; PB_CPG
+    PB_CPG
 } from '../modules/methylation.nf'
 
 
@@ -15,7 +15,6 @@ workflow methylation_workflow {
         file("${params.fasta}.fai")
     ])
 
-    MINIMOD(ch_bam, ch_fasta)
     PB_CPG(ch_bam, ch_fasta)
 
 } 

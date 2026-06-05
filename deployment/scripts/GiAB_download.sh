@@ -2,7 +2,7 @@
 set -euo pipefail
 
 input=$1
-TARGET_CHR="chr21"
+TARGET_CHR=$2
 
 mkdir -p ${input}/truth_vcfs
 mkdir -p ${input}/bams

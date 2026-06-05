@@ -1,21 +1,3 @@
-process MINIMOD {
-    publishDir "${params.outfolder}/${params.runID}/methylation/minimod", mode: 'copy', overwrite: true    
-    tag "${sample}"
-    label 'core'
-    label 'medium'
-    input:
-        tuple val(sample), path(bam), path(bai)
-        tuple path(fasta), path(fai)
-    output:
-        tuple val(sample), path("${sample}_minimod.tsv.gz"), emit: minimod
-    script:
-        """
-        minimod view \
-            ${fasta} \
-            ${bam} | bgzip -c > ${sample}_minimod.tsv.gz
-        """ 
-}
-
 process PB_CPG {
     publishDir "${params.outfolder}/${params.runID}/methylation/pb-cpg", mode: 'copy', overwrite: true
     tag "${sample}"
