@@ -12,5 +12,6 @@ dependencies:
   - pb-cpg-tools
   - minimod
   - survivor
+  - glnexus
 platforms:
   - linux-64
