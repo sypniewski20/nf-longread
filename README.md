@@ -67,7 +67,7 @@ Reporting
 
 | Dependency              | Version                                         |
 |-------------------------|-------------------------------------------------|
-| Nextflow                | ≥ 22.10                                         |
+| Nextflow                | < 26
 | Singularity / Apptainer | any recent                                      |
 | Container images        | `core.sif`, `qc.sif`, `happi.sif`, `manta.sif` |
 | Reference genome        | GRCh38 FASTA + index                            |
