@@ -1,6 +1,4 @@
-# nf-ivd — Clinical Germline IVD Pipeline
-
-A Nextflow DSL2 pipeline for **IVD-compliant germline variant calling** using GATK 4.6+ Best Practices in DRAGEN-mode. Achieves hardware-equivalent accuracy on standard CPU infrastructure via DRAGEN HMM and DRAGstr noise modelling.
+# PacBio pipeline
 
 ---
 
